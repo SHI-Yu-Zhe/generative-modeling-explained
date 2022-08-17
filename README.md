@@ -328,9 +328,7 @@ $$
 Hence, this variational formulation transforms the extremely hard conditional distribution estimation to a very simple Gaussian distribution.
 
 Recall our gold standard, MLE---as we have obtained the conditional distribution, naturally we can formulate the variational form in KL-Divergence:
-$$
-D_{KL}\Big(p(x_0)\prod_{t}q(x_t|x_{t-1})\Big\|\prod_tp_\theta(x_{t-\Delta t}|x_t)\Big),
-$$
+$$D_{KL}\Big(p(x_0)\prod_{t}q(x_t|x_{t-1})\Big\|\prod_tp_\theta(x_{t-\Delta t}|x_t)\Big),$$
 where the left distribution is the complete data distribution of the entire forward process; specifically, $p(x_0)$ is the observed data and $\prod_{t}q(x_t|x_{t-1})$ is the joint distribution of latent variables; the right distribution is the model density. 
 
 In the reverse process, we can execute noise reduction by decomposing the KL-Divergence:
