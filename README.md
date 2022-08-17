@@ -293,7 +293,7 @@ From line 1 to line 2 we integrate over $x_0$ to obtain the joint distribution $
 On the basis of the Vincent Identity, we have:
 $$\mathbb{E}\big[p(x_0|x_t)\big]=x_t+\sigma^2t\nabla_x\log p_t(x_t),$$
 where $x_0$ is the clean image and $\sigma^2t$ is the accumulated noise. Hence, we can estimate the score in a regression fashion where the objective is to predict $x_0$ given $x_t$, formulated as:
-$$\min\limits_{\theta}\big|x_0-(x_t+\sigma^2ts_\theta(x_t,t))\big|^2,$$
+$$\min\limits_{\theta}\Big|x_0-\big(x_t+\sigma^2ts_\theta(x_t,t)\big)\Big|^2,$$
 and this gives us a Denoising Auto-Encoder. We can parametrize this in a U-Net. A U-Net encodes the noisy version of the image and decodes back to the clean version of the image, with the encoder and decoder sharing parameters. We can learn a single U-Net for all levels of noise by taking noisy level $x_t$ and $t$ as the input variables of the model. $t$ can be embedded as expressive vectors $\sin\omega t+\cos\omega t$, which is similar to the positional encoding in the Transformer model. 
 
 <p align="center">
@@ -302,7 +302,7 @@ and this gives us a Denoising Auto-Encoder. We can parametrize this in a U-Net. 
 </p>
 
 Under this implementation, we take relatively big steps to estimate noise:
-$$\big|\varepsilon-(x_t+\sigma^2ts_\theta(x_0+\varepsilon,t))\big|^2,$$
+$$\Big|\varepsilon-\big(x_t+\sigma^2ts_\theta(x_0+\varepsilon,t)\big)\Big|^2,$$
 where $\varepsilon$ is the estimated noise level step size, and we then take relatively small steps to denoise:
 $$\tilde{x}_{t-\Delta t}=x_t+\frac{\sigma^2\Delta t}{2}s_\theta(x_t,t).$$
 
