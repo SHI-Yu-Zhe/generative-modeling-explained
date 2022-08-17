@@ -28,7 +28,7 @@ To Analyze the continuous density, we can discretize spaces into $\Delta x\right
 ### Understand Basic Concepts by Counting
 
 Consider the number of data points a cell (shadowed area), we have:
-$$n(x,y)=#(x,x+\Delta x)\times (y,y+\Delta y),$$ 
+$$n(x,y)=\text{Count}(x,x+\Delta x)\times (y,y+\Delta y),$$ 
 then $n(x)$ is the number of points in the vertical bin $(x,x+\Delta x)$:
 $$n(x)=\sum_{y} n(x,y),$$
 and similarly, $n(y)$ is the number of points in the horizontal bin $(y,y+\Delta y)$:
