@@ -91,13 +91,9 @@ $$\hat{\theta}_{MLE}=\arg\max\limits_{\theta} L(\theta).$$
 ### Another Perspective on MLE: Kullback-Leibler Divergence
 
 Kullback-Leibler Divergence (KL-Divergence) measures the difference between two distributions $p$ and $q$, is formulated as:
-$$D_{KL}(p || q)=\mathbb{E}_p\Bigg[\log\frac{p(x)}{q(x)}\Bigg].$$
+$$D_{KL}(p \| q)=\mathbb{E}_p\Bigg[\log\frac{p(x)}{q(x)}\Bigg].$$
 A KL-Divergence's view of MLE is treating the two distributions as the groundtruth distribution of the data and the distribution estimated the model, respectively. Hence, we have:
-$$
-\begin{aligned}
-D_{KL}(p_{data}\| p_\theta)&=\mathbb{E}_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}_{p_{data}}\big[\log p_\theta(x)\big]\\ \newline &=-\text{Entropy}(p_{data})-L(\theta).
-\end{aligned}
-$$ 
+$$\begin{aligned}D_{KL}(p_{data}\| p_\theta)&=\mathbb{E}_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}_{p_{data}}\big[\log p_\theta(x)\big]\\ \newline &=-\text{Entropy}(p_{data})-L(\theta).\end{aligned}$$ 
 Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Divergence between $p_{data}$ and $p_{\theta}$. This KL-Divergence view does provide us with some insights about density estimation---the model varying $\theta$ is lying on a manifold (so-called information geometry picture) and the data density is a point that may not belong to the manifold. But we are projecting the data density point to the model manifold and MLE provides the best approximation to the data density.
 
 <p align="center">
