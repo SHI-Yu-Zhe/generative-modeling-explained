@@ -91,7 +91,7 @@ $$\hat{\theta}_{MLE}=\arg\max\limits_{\theta} L(\theta).$$
 ### Another Perspective on MLE: Kullback-Leibler Divergence
 
 Kullback-Leibler Divergence (KL-Divergence) measures the difference between two distributions $p$ and $q$, is formulated as:
-$$D_{KL}(p \| q)=\mathbb{E}_p\Bigg[\log\frac{p(x)}{q(x)}\Bigg].$$
+$$D_{KL}(p || q)=\mathbb{E}_p\Bigg[\log\frac{p(x)}{q(x)}\Bigg].$$
 A KL-Divergence's view of MLE is treating the two distributions as the groundtruth distribution of the data and the distribution estimated the model, respectively. Hence, we have:
 $$
 \begin{aligned}
