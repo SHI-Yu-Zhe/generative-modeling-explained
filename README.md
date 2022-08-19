@@ -290,7 +290,7 @@ where the noise estimation can be reparametrized as $|\varepsilon-\varepsilon\_0
 
 Diffusion model can be viewed as the Auto-regressive model in the time domain, which reverse the time, going from white noise $x\_t$ to the clear image $x\_0$.
 
-Diffusion model can be viewed as the Flow-based model. Flow-based model starts from white noise $Z\sim\mathcal{0,\mathcal{I}\_D}$ ($D$ is the dimension of data) and use a sequence of transformations to generate $x=g\_1(g\_2(\cdots g\_t(z)))$. Each trasformation $g\_i$ has to be in very stricted form and invertible. Hence, the Deffusion model can be viewed as a more free-formed Flow-based model without restrictions and invertibility.
+Diffusion model can be viewed as the Flow-based model. Flow-based model starts from white noise $Z\sim\mathcal{0},\mathcal{I}\_D$ ($D$ is the dimension of data) and use a sequence of transformations to generate $x=g\_1(g\_2(\cdots g\_t(z)))$. Each trasformation $g\_i$ has to be in very stricted form and invertible. Hence, the Deffusion model can be viewed as a more free-formed Flow-based model without restrictions and invertibility.
 
 Diffusion model can be viewed as a refined version of Variational Auto-Encoder (VAE). VAE starts from white noise $Z\sim\mathcal{N}(0,\mathcal{I}\_d), d<<D$ and generates $x=g(z)+\varepsilon, \varepsilon\sim\mathcal{N}(0,\sigma^2\mathcal{I}\_D)$. The KL-Divergence for learning VAE by MLE is:
 $$\begin{aligned} D\_{KL}&=\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)\big)\\ \newline &=D\_{KL}\big(p\_{data}(x)\big\|p\_\theta(x)\big)+D\_{KL}\big(q\_\phi(z|x)\big\|p\_\theta(x|z)\big). \end{aligned}$$
