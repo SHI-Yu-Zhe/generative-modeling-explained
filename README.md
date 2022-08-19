@@ -77,9 +77,9 @@ Maximum Likelihood Estimation (MLE) is the basic idea to estimate a density func
 Given finite $n$ example $x_1,x_2,\dots,x_n \sim p_{data}(x), x\in\mathbb{R}^D$, where each $x$ is a D-dimensional vector (D can be very large) and is independent and identically distributed in the data. We design a model $p_\theta(x)$ to parametrize the density where $\theta$ denotes all the parameters of the model, *e.g.*, a neural network. In most times, $p_\theta(x)$ is implicited and can only be obtained by the marginalization operation. 
 
 Now we come to the core of the MLE---defining the log-likelihood function:
-$$L(\theta)=\frac{1}{n}\sum_{i=1}^n \log p_\theta(x_i).$$
+$$L(\theta)=\frac{1}{n}\sum\_{i=1}^n \log p\_\theta(x\_i).$$
 The underlying logic of taking $\log$ of the density is: density is always positive, and $\log$ function maps it to the whole range. As the function is essentially an average over all the data points, we can derive it to an expectation form:
-$$\begin{aligned} L(\theta)&=\frac{1}{n}\sum_{i=1}^n \log p_\theta(x_i)\\ \newline &=\mathbb{E}_{p_{data}}\big\[\log p_\theta(x)\big\].\end{aligned}$$
+$$\begin{aligned} L(\theta)&=\frac{1}{n}\sum\_{i=1}^n \log p\_\theta(x\_i)\\ \newline &=\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\].\end{aligned}$$
 Our objective is to maximize the log-likelihood function, that $\theta$ to assign maximum probabilistic density to all the examples:
 $$\hat{\theta}\_{MLE}=\arg\max\limits\_{\theta} L(\theta).$$
 
