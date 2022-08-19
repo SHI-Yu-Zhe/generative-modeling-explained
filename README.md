@@ -60,7 +60,7 @@ This equation shows that the joint distribution lies in the center of probabilit
 
 ### Expectation
 
-The expectation $\mathbb{E}$ measures the average of the corresponding distribution in the long run. Visually, $\mathbb{E}_{p(x,y)}$ is the average over all the $n$ points, $\mathbb{E}_{p(x)}$ is the average over all points projected to the x-axis, and $\mathbb{E}_{p(y|x)}$ is the average with the points in the vertical bin $(x,x+\Delta x)$.
+The expectation $\mathbb{E}$ measures the average of the corresponding distribution in the long run. Visually, $\mathbb{E}\_{p(x,y)}$ is the average over all the $n$ points, $\mathbb{E}\_{p(x)}$ is the average over all points projected to the x-axis, and $\mathbb{E}\_{p(y|x)}$ is the average with the points in the vertical bin $(x,x+\Delta x)$.
 
 ## The Core Problem: Density Estimation
 
@@ -86,22 +86,22 @@ L(\theta)&=\frac{1}{n}\sum_{i=1}^n \log p_\theta(x_i)\\
 \end{aligned}
 $$
 Our objective is to maximize the log-likelihood function, that $\theta$ to assign maximum probabilistic density to all the examples:
-$$\hat{\theta}_{MLE}=\arg\max\limits_{\theta} L(\theta).$$
+$$\hat{\theta}\_{MLE}=\arg\max\limits\_{\theta} L(\theta).$$
 
 ### Another Perspective on MLE: Kullback-Leibler Divergence
 
 Kullback-Leibler Divergence (KL-Divergence) measures the difference between two distributions $p$ and $q$, is formulated as:
-$$D_{KL}(p \| q)=\mathbb{E}_p\Bigg[\log\frac{p(x)}{q(x)}\Bigg].$$
+$$D\_{KL}(p \| q)=\mathbb{E}_p\Bigg\[\log\frac{p(x)}{q(x)}\Bigg\].$$
 A KL-Divergence's view of MLE is treating the two distributions as the groundtruth distribution of the data and the distribution estimated the model, respectively. Hence, we have:
-$$\begin{aligned}D_{KL}(p_{data}\| p_\theta)&=\mathbb{E}_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}_{p_{data}}\big[\log p_\theta(x)\big]\\ \newline &=-\text{Entropy}(p_{data})-L(\theta).\end{aligned}$$ 
-Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Divergence between $p_{data}$ and $p_{\theta}$. This KL-Divergence view does provide us with some insights about density estimation---the model varying $\theta$ is lying on a manifold (so-called information geometry picture) and the data density is a point that may not belong to the manifold. But we are projecting the data density point to the model manifold and MLE provides the best approximation to the data density.
+$$\begin{aligned}D_{KL}(p_{data}\| p_\theta)&=\mathbb{E}_{p_{data}}\big\[\log p_{data}(x)\big\]-\mathbb{E}_{p_{data}}\big\[\log p_\theta(x)\big\]\\ \newline &=-\text{Entropy}(p_{data})-L(\theta).\end{aligned}$$ 
+Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Divergence between $p_{data}$ and $p\_{\theta}$. This KL-Divergence view does provide us with some insights about density estimation---the model varying $\theta$ is lying on a manifold (so-called information geometry picture) and the data density is a point that may not belong to the manifold. But we are projecting the data density point to the model manifold and MLE provides the best approximation to the data density.
 
 <p align="center">
 <img src="figures/kldiv.jpg" alt="kldiv" width=200>
 <figcaption align = "center"><b>Projecting data to the model manifold</b></figcaption>
 </p>
 
-Since we are calculating the expectation over $p_{data}$, we cannot miss any mode of the data, otherwise we get a rather big KL-Divergence. This is the *mode covering* behavior of generative models. This raises a core problem of generative modeling---if your model is not expressive enough, you end up with either diffused or dispersed densities. In the remainder of this tutorial, we are going over different models trying to resolve the problem.
+Since we are calculating the expectation over $p\_{data}$, we cannot miss any mode of the data, otherwise we get a rather big KL-Divergence. This is the *mode covering* behavior of generative models. This raises a core problem of generative modeling---if your model is not expressive enough, you end up with either diffused or dispersed densities. In the remainder of this tutorial, we are going over different models trying to resolve the problem.
 
 <p align="center">
 <img src="figures/modecovering.jpg" alt="modecovering" width=200>
