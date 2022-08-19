@@ -131,13 +131,8 @@ However, computing the expectation is extremely hard. We have to use Monte-Carlo
 ### Contrastive Divergence
 
 Following the KL-Divergence perspective, we can also interpret the Monte-Carlo Sampling process for EBM in a similar way: consider the model in $t$ step $\theta\_t$, we have the Contrastive Divergence (CD):
-$$
-\begin{aligned}
-C(\theta)&=D\_{KL}(p\_{data}(x)\parallel p\_\theta(x)) - D\_{KL}(p\_{\theta\_t}(x)\parallel p\_\theta(x))\\
-&=\mathbb{E}\_{p\_{data}}\big[\log p\_{data}(x)\big]-\mathbb{E}\_{p\_{data}}\big[\log p\_\theta(x)\big]-\mathbb{E}\_{p\_{\theta\_t}}\big[\log p\_{\theta\_t}(x)\big]+\mathbb{E}\_{p\_{\theta\_t}}\big[\log p\_\theta(x)\big],
-\end{aligned}
-$$
-and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p\_{data}}\big[\log p\_\theta(x)\big]$ and $\mathbb{E}\_{p\_{\theta\_t}}\big[\log p\_\theta(x)\big]$ is cancelled by each other. This provides an important merit that $L'(\theta\_t)=C'(\theta\_t)$, making the computation much more tractable.
+$$\begin{aligned}C(\theta)&=D\_{KL}(p\_{data}(x)\parallel p\_\theta(x)) - D\_{KL}(p\_{\theta\_t}(x)\parallel p\_\theta(x))\\ \newline &=\mathbb{E}\_{p\_{data}}\big\[\log p\_{data}(x)\big\]-\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]-\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_{\theta\_t}(x)\big\]+\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_\theta(x)\big\],\end{aligned}$$
+and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]$ and $\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_\theta(x)\big\]$ is cancelled by each other. This provides an important merit that $L'(\theta\_t)=C'(\theta\_t)$, making the computation much more tractable.
 
 ### Another Interpretation: Self-Adversarial Training
 
@@ -167,7 +162,7 @@ We cannot sample from the model density all at once. Hence, we use Langevin Dyna
 
 We discretize the time axis and each $\Delta t$ is an iteration step. The single-step updating is:
 $$x\_{t+\Delta t}=x\_t+\frac{\Delta t}{2}\nabla\_x\log\pi(x)+e\_t\sqrt{\Delta t},$$
-where $\nabla\_x\log\pi(x)$ is the gradient of the target density for executing the gradient ascent, which is called *score*. The term $e\_t$ is a random variable at each step where $\mathbb{E}[e\_t]=0$ and $\text{Var}[e\_t]=\mathcal{I}$. The scalar $\sqrt{\Delta t}$ serves to normalize the perturbation. Langevin Dynamics is a general process to sample from arbitrary density.
+where $\nabla\_x\log\pi(x)$ is the gradient of the target density for executing the gradient ascent, which is called *score*. The term $e\_t$ is a random variable at each step where $\mathbb{E}\[e\_t\]=0$ and $\text{Var}\[e\_t\]=\mathcal{I}$. The scalar $\sqrt{\Delta t}$ serves to normalize the perturbation. Langevin Dynamics is a general process to sample from arbitrary density.
 
 <p align="center">
 <img src="figures/chain.jpg" alt="chain" width=500>
@@ -194,13 +189,13 @@ How does this come? Let us look back into the updating equation of Langevin Dyna
 <figcaption align = "center"><b>Explaining Langevin Dynamics with (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b></figcaption>
 </p>
 
-To analyze the phenomenon mathematically, we may look into the Taylor expansion of the testing function $\mathbb{E}\big[h(x\_{t+\Delta t})\big]$.Expanding $\frac{\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have opposite signs, they cancelled the effect of each other. This is identified as the Fokker-Planck effect.
+To analyze the phenomenon mathematically, we may look into the Taylor expansion of the testing function $\mathbb{E}\big\[h(x\_{t+\Delta t})\big\]$.Expanding $\frac{\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have opposite signs, they cancelled the effect of each other. This is identified as the Fokker-Planck effect.
 
 On the basis of equilibrium sampling, we are introducing score-based/diffusion models.
 
 ### Tempering & Annealing
 
-Though coming with the merit of equilibrium sampling, Langevin Dynamics suffers from very slow convergence, especially when the model density has a lot of localized modes (high modalities). To address this problem, we introduce a temperature parameter $\beta\in[0,1]$ into the EBM formula:
+Though coming with the merit of equilibrium sampling, Langevin Dynamics suffers from very slow convergence, especially when the model density has a lot of localized modes (high modalities). To address this problem, we introduce a temperature parameter $\beta\in\[0,1\]$ into the EBM formula:
 $$\pi\_\beta(x)=\frac{1}{Z\_\beta(x)}\exp\big(\beta f(x)\big)q(x),$$
 where $q(x)\sim\mathcal{N}(0,\mathcal{I})$. As $\beta$ increasing from 0 to 1, we are sampling from a simple Gaussian to a highly multi-modal density. This process is called Simulated Annealing. A principled implementation of Simulated Annealing is running parallel chains to draw samples from $\beta=0$ to $\beta=1$ simultaneously, with the exchange of samples among models.
 
@@ -218,7 +213,7 @@ Let $x\_0$ denote the clean image and $x\_t$ denote the image with noise level $
 $$x\_{t+\Delta t}=x\_t+\delta e\_t\sqrt{\Delta t}-\frac{\delta^2\Delta t}{2}\nabla\_x\log p\_t(x).$$
 Let us look into the equation, where $\delta e\_t\sqrt{\Delta t}$ is the random step of adding perturbation, and $\frac{\delta^2\Delta t}{2}\nabla\_x\log p\_t(x)$ is the deterministic step of gradient descent. Recall the Fokker-Planck effect introduced in the Langevin Dynamics. The only difference lies in the deterministic step---in contrast to gradient ascent in the updating of Langevin Dynamics, forward updating Diffusion model applies gradient descent. Consequently, the effect of gradient descent is opposite to that of gradient ascent---in the gradient descent step, as the model tends to update according to the gradient, the particles are *stretched* away from areas with more particles, thus making the density peaks more smooth. Hence, we can see that both the deterministic step and the random step lead to dispersion on the density. 
 
-We can also look into the Taylor expansion of the testing function $\mathbb{E}\big[h(x\_{t+\Delta t})\big]$.Expanding $\frac{\delta^2\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $\delta e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have the same sign, instead of cancelling the effect of each other, they actually have the same effect. This is the non-equilibrium sampling process.
+We can also look into the Taylor expansion of the testing function $\mathbb{E}\big\[h(x\_{t+\Delta t})\big\]$.Expanding $\frac{\delta^2\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $\delta e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have the same sign, instead of cancelling the effect of each other, they actually have the same effect. This is the non-equilibrium sampling process.
 
 ### Reverse: From Noise Back to Image
 
@@ -242,7 +237,7 @@ where $d\tilde{B}\_t=d\tilde{e}\_t\sqrt{\Delta t}=\frac{\tilde{e}dt}{2\sqrt{\Del
 
 ### Vincent Identity
 
-Here we go into the core problem of learning a Duffusion model: how do we estimate the score $\nabla\_x\log p\_t(x\_t)$? Vincent Identity provides us with a very powerful tool that $\nabla\_x\log p\_t(x\_t)=\mathbb{E}\_{p(x\_0|x\_t)}\big[-(x\_t-x\_0)/\sigma\_t^2\big]$.
+Here we go into the core problem of learning a Duffusion model: how do we estimate the score $\nabla\_x\log p\_t(x\_t)$? Vincent Identity provides us with a very powerful tool that $\nabla\_x\log p\_t(x\_t)=\mathbb{E}\_{p(x\_0|x\_t)}\big\[-(x\_t-x\_0)/\sigma\_t^2\big\]$.
 
 From the clean image $x\_0\sim p\_0$, the Diffusion model gradually adds noise in the forward process to $x\_t\sim p\_t$, then we have:
 $$x\_t=x\_0+\mathcal{N}(0,\sigma^2t\mathcal{I}),$$
@@ -254,11 +249,11 @@ $$
 &=\frac{1}{p\_t(x\_t)}\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)p(x\_0,x\_t)dx\_0\\
 &=\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)\frac{p(x\_0,x\_t)}{p\_t(x\_t)}dx\_0\\
 &=\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)p(x\_0|x\_t)dx\_0\\
-&=\mathbb{E}\_{p(x\_0|x\_t)}\Big[\nabla\_{x\_t}\big(\log p(x\_0)p(x\_t|x\_0)\big)\Big]\\
-&=\mathbb{E}\_{p(x\_0|x\_t)}\Big[\nabla\_{x\_t}\big(\log p(x\_0)+\log p(x\_t|x\_0)\big)\Big]\\
-&=\mathbb{E}\_{p(x\_0|x\_t)}\big[\nabla\_{x\_t}\log p(x\_t|x\_0)\big]\\
-&=\mathbb{E}\_{p(x\_0|x\_t)}\big[\nabla\_{x\_t}(x\_t-x\_0)^2/2\sigma\_t^2\big]\\
-&=\mathbb{E}\_{p(x\_0|x\_t)}\big[-(x\_t-x\_0)/\sigma\_t^2\big].
+&=\mathbb{E}\_{p(x\_0|x\_t)}\Big\[\nabla\_{x\_t}\big(\log p(x\_0)p(x\_t|x\_0)\big)\Big\]\\
+&=\mathbb{E}\_{p(x\_0|x\_t)}\Big\[\nabla\_{x\_t}\big(\log p(x\_0)+\log p(x\_t|x\_0)\big)\Big\]\\
+&=\mathbb{E}\_{p(x\_0|x\_t)}\big\[\nabla\_{x\_t}\log p(x\_t|x\_0)\big\]\\
+&=\mathbb{E}\_{p(x\_0|x\_t)}\big\[\nabla\_{x\_t}(x\_t-x\_0)^2/2\sigma\_t^2\big\]\\
+&=\mathbb{E}\_{p(x\_0|x\_t)}\big\[-(x\_t-x\_0)/\sigma\_t^2\big\].
 \end{aligned}
 $$
 From line 1 to line 2 we integrate over $x\_0$ to obtain the joint distribution $p(x\_0,x\_t)$. Then we employ a common trick for taking a derivative of a density in the integral that puts $\log$ into the derivative operator in line 3. From line 4 to line 5 we put $\frac{1}{p(x\_0)}$ into the integral and obtain the conditional density. From line 6 we rewrite the integral into a expectation form. Line 7 shows the merit of adding the $\log$ term, we expand the factorized joint distribution into a simple addition and calculate their derivatives respectively. 
@@ -266,7 +261,7 @@ From line 1 to line 2 we integrate over $x\_0$ to obtain the joint distribution 
 ### Score Matching/Denoising Auto-Encoder
 
 On the basis of the Vincent Identity, we have:
-$$\mathbb{E}\big[p(x\_0|x\_t)\big]=x\_t+\sigma^2t\nabla\_x\log p\_t(x\_t),$$
+$$\mathbb{E}\big\[p(x\_0|x\_t)\big\]=x\_t+\sigma^2t\nabla\_x\log p\_t(x\_t),$$
 where $x\_0$ is the clean image and $\sigma^2t$ is the accumulated noise. Hence, we can estimate the score in a regression fashion where the objective is to predict $x\_0$ given $x\_t$, formulated as:
 $$\min\limits\_{\theta}\Big|x\_0-\big(x\_t+\sigma^2ts\_\theta(x\_t,t)\big)\Big|^2,$$
 and this gives us a Denoising Auto-Encoder. We can parametrize this in a U-Net. A U-Net encodes the noisy version of the image and decodes back to the clean version of the image, with the encoder and decoder sharing parameters. We can learn a single U-Net for all levels of noise by taking noisy level $x\_t$ and $t$ as the input variables of the model. $t$ can be embedded as expressive vectors $\sin\omega t+\cos\omega t$, which is similar to the positional encoding in the Transformer model. 
