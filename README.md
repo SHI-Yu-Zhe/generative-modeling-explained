@@ -118,28 +118,13 @@ where $f\_\theta(x)$ is the negative energy and $Z(\theta)=\int\exp\big(f\_\thet
 ### Learning EBM
 
 We can calculate the derivative over $\theta$ using the chain rule, obtaining:
-$$
-\begin{aligned}
-\frac{\partial}{\partial\theta}\log Z(\theta)&=\frac{1}{Z(\theta)}\int\exp\big(f\_\theta(x)\big)\frac{\partial}{\partial\theta}f\_\theta(x)dx\\
-&=\mathbb{E}\_{P\_\theta}\Bigg[\frac{\partial}{\partial\theta} f\_\theta(x)\Bigg],
-\end{aligned}
-$$
-where we get an important property that $\frac{\partial}{\partial\theta}\log Z(\theta)=\mathbb{E}\_{P\_\theta}\big[\nabla\_\theta f\_\theta(x)\big]$. 
+$$\begin{aligned}\frac{\partial}{\partial\theta}\log Z(\theta)&=\frac{1}{Z(\theta)}\int\exp\big(f\_\theta(x)\big)\frac{\partial}{\partial\theta}f\_\theta(x)dx\\ \newline &=\mathbb{E}\_{P\_\theta}\Bigg[\frac{\partial}{\partial\theta} f\_\theta(x)\Bigg],\end{aligned}$$
+where we get an important property that $\frac{\partial}{\partial\theta}\log Z(\theta)=\mathbb{E}\_{P\_\theta}\big\[\nabla\_\theta f\_\theta(x)\big\]$. 
 
 Bringing the EBM formulation into the MLE formulation, we have:
-$$
-\begin{aligned}
-L(\theta)&=\frac{1}{n}\sum\_{i=1}^n \log p\_\theta(x\_i)\\
-&=\frac{1}{n}\sum\_{i=1}^n f\_\theta(x\_i)-\log Z(\theta),
-\end{aligned}
-$$
+$$\begin{aligned}L(\theta)&=\frac{1}{n}\sum\_{i=1}^n \log p\_\theta(x\_i)\\ \newline &=\frac{1}{n}\sum\_{i=1}^n f\_\theta(x\_i)-\log Z(\theta),\end{aligned}$$
 and the derivative of $L(\theta)$ is:
-$$
-\begin{aligned}
-L'(\theta)&=\frac{1}{n}\sum\_{i=1}^n\nabla\_\theta f\_\theta(x\_i)-\mathbb{E}\_{p\_\theta}\big[\nabla\_\theta f\_\theta(x)\big]\\
-&=\mathbb{E}\_{p\_{data}}\big[\nabla\_\theta f\_\theta(x)\big]-\mathbb{E}\_{p\_\theta}\big[\nabla\_\theta f\_\theta(x)\big].
-\end{aligned}
-$$
+$$\begin{aligned}L'(\theta)&=\frac{1}{n}\sum\_{i=1}^n\nabla\_\theta f\_\theta(x\_i)-\mathbb{E}\_{p\_\theta}\big\[\nabla\_\theta f\_\theta(x)\big\]\\ \newline &=\mathbb{E}\_{p\_{data}}\big\[\nabla\_\theta f\_\theta(x)\big\]-\mathbb{E}\_{p\_\theta}\big\[\nabla\_\theta f\_\theta(x)\big\].\end{aligned}$$
 
 However, computing the expectation is extremely hard. We have to use Monte-Carlo Sampling to draw examples from the estimated density. The goal is to match the average of observed examples and the average of synthesized examples. The main problem of learning EBM is that sampling from the model density is non-trivial at all.
 
