@@ -269,7 +269,7 @@ We can alternativelly reform the score-based methods into a variational way. The
 $$x\_t=x\_{t-\Delta t}+\mathcal{N}(0,\sigma^2\Delta t\mathcal{I}).$$
 But in the reverse process for estimating $x\_0$, variational methods focus on the conditional distribution, which is distinct from the score-based methods focusing on marginal distributions:
 <!--- $$ \begin{aligned} p(x\_{t-\Delta t}\|x\_t)&\propto p(x\_{t-\Delta t})q(x\_t\|x\_{t-\Delta t})\\ \newline \log p(x\_{t-\Delta t}\|x\_t)&=\log p(x\_{t-\Delta t})-\frac{1}{2\sigma^2\Delta t}\|x\_{t-\Delta t}-x\_t\|^2 \end{aligned}$$ --->
-$$ \begin{aligned} p(x\_{t-\Delta t}|x\_t)& p(x\_{t-\Delta t})q(x\_t|x\_{t-\Delta t})\\ \newline \log p(x\_{t-\Delta t}|x\_t)&=\log p(x\_{t-\Delta t})-\frac{1}{2\sigma^2\Delta t}|x\_{t-\Delta t}-x\_t|^2 \end{aligned}$$
+$$ \begin{aligned} p\\ \newline \log p^2 \end{aligned}$$
 The derivation starts from applying the Bayes rule to obtain $p(x\_{t-\Delta t}|x\_t)$. As $q(x\_t|x\_{t-\Delta t})$ is Gaussian noise, We can approximate the conditional density to a Gaussian density *iff* $\Delta t$ is very small, *i.e.*, $\Delta t\rightarrow 0$. Applying first-order Taylor expansion, we have:
 $$ \begin{aligned} \log p(x\_{t-\Delta t}|x\_t)&\approx\log p\_(x\_t)+\nabla\_x\log p(x\_t)(x\_{t-\Delta t}-x\_t)-\frac{1}{2\sigma^2\Delta t}|x\_{t-\Delta t}-x\_t|^2\\ \newline &=-\frac{1}{2\sigma^2\Delta t}\Big|x\_{t-\Delta t}-\big(x\_t+\sigma^2\Delta t\nabla\_x\log p(x\_t)\big)\Big|^2+\text{const}\\ \newline &\approx\mathcal{N}\big(x\_t+\sigma^2\Delta t\nabla\_x\log p(x\_t),\sigma^2\Delta t\mathcal{I}\big). \end{aligned}$$
 Hence, this variational formulation transforms the extremely hard conditional distribution estimation to a very simple Gaussian distribution.
