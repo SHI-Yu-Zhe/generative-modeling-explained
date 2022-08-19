@@ -242,7 +242,7 @@ Here we go into the core problem of learning a Duffusion model: how do we estima
 From the clean image $x\_0\sim p\_0$, the Diffusion model gradually adds noise in the forward process to $x\_t\sim p\_t$, then we have:
 $$x\_t=x\_0+\mathcal{N}(0,\sigma^2t\mathcal{I}),$$
 where $\sigma^2t$ is the noise accumulated in the $t$ levels. Then we derive the Vincent Identity:
-$$ \begin{aligned} \nabla\_x\log p\_t(x\_t)&=\frac{1}{p\_t(x\_t)}\nabla\_x p\_t(x\_t)\\ \newline &=\frac{1}{p\_t(x\_t)}\int\nabla\_{x\_t}p(x\_0,x\_t)dx\_0\\ \newline &=\frac{1}{p\_t(x\_t)}\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)p(x\_0,x\_t)dx\_0\\ \newline &=\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)\frac{p(x\_0,x\_t)}{p\_t(x\_t)}dx\_0\\ \newline &=\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)p(x\_0|x\_t)dx\_0\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\Big\[\nabla\_{x\_t}\big(\log p(x\_0)p(x\_t|x\_0)\big)\Big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\Big\[\nabla\_{x\_t}\big(\log p(x\_0)+\log p(x\_t|x\_0)\big)\Big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\big\[\nabla\_{x\_t}\log p(x\_t|x\_0)\big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\big\[\nabla\_{x\_t}(x\_t-x\_0)^2/2\sigma\_t^2\big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\big\[-(x\_t-x\_0)/\sigma\_t^2\big\]. \newline \end{aligned}$$
+$$ \begin{aligned} \nabla\_x\log p\_t(x\_t)&=\frac{1}{p\_t(x\_t)}\nabla\_x p\_t(x\_t)\\ \newline &=\frac{1}{p\_t(x\_t)}\int\nabla\_{x\_t}p(x\_0,x\_t)dx\_0\\ \newline &=\frac{1}{p\_t(x\_t)}\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)p(x\_0,x\_t)dx\_0\\ \newline &=\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)\frac{p(x\_0,x\_t)}{p\_t(x\_t)}dx\_0\\ \newline &=\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)p(x\_0|x\_t)dx\_0\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\Big\[\nabla\_{x\_t}\big(\log p(x\_0)p(x\_t|x\_0)\big)\Big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\Big\[\nabla\_{x\_t}\big(\log p(x\_0)+\log p(x\_t|x\_0)\big)\Big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\big\[\nabla\_{x\_t}\log p(x\_t|x\_0)\big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\big\[\nabla\_{x\_t}(x\_t-x\_0)^2/2\sigma\_t^2\big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\big\[-(x\_t-x\_0)/\sigma\_t^2\big\]. \end{aligned}$$
 From line 1 to line 2 we integrate over $x\_0$ to obtain the joint distribution $p(x\_0,x\_t)$. Then we employ a common trick for taking a derivative of a density in the integral that puts $\log$ into the derivative operator in line 3. From line 4 to line 5 we put $\frac{1}{p(x\_0)}$ into the integral and obtain the conditional density. From line 6 we rewrite the integral into a expectation form. Line 7 shows the merit of adding the $\log$ term, we expand the factorized joint distribution into a simple addition and calculate their derivatives respectively. 
 
 ### Score Matching/Denoising Auto-Encoder
@@ -268,20 +268,9 @@ $$\tilde{x}\_{t-\Delta t}=x\_t+\frac{\sigma^2\Delta t}{2}s\_\theta(x\_t,t).$$
 We can alternativelly reform the score-based methods into a variational way. The forward process from $x\_{t-\Delta t}$ to $x\_t$ is quite similar to score-based methods:
 $$x\_t=x\_{t-\Delta t}+\mathcal{N}(0,\sigma^2\Delta t\mathcal{I}).$$
 But in the reverse process for estimating $x\_0$, variational methods focus on the conditional distribution, which is distinct from the score-based methods focusing on marginal distributions:
-$$
-\begin{aligned}
-p(x\_{t-\Delta t}|x\_t)&\propto p(x\_{t-\Delta t})q(x\_t|x\_{t-\Delta t})\\
-\log p(x\_{t-\Delta t}|x\_t)&=\log p(x\_{t-\Delta t})-\frac{1}{2\sigma^2\Delta t}|x\_{t-\Delta t}-x\_t|^2
-\end{aligned}
-$$
+$$ \begin{aligned} p(x\_{t-\Delta t}|x\_t)&\propto p(x\_{t-\Delta t})q(x\_t|x\_{t-\Delta t})\\ \newline \log p(x\_{t-\Delta t}|x\_t)&=\log p(x\_{t-\Delta t})-\frac{1}{2\sigma^2\Delta t}|x\_{t-\Delta t}-x\_t|^2 \end{aligned}$$
 The derivation starts from applying the Bayes rule to obtain $p(x\_{t-\Delta t}|x\_t)$. As $q(x\_t|x\_{t-\Delta t})$ is Gaussian noise, We can approximate the conditional density to a Gaussian density *iff* $\Delta t$ is very small, *i.e.*, $\Delta t\rightarrow 0$. Applying first-order Taylor expansion, we have:
-$$
-\begin{aligned}
-\log p(x\_{t-\Delta t}|x\_t)&\approx\log p\_(x\_t)+\nabla\_x\log p(x\_t)(x\_{t-\Delta t}-x\_t)-\frac{1}{2\sigma^2\Delta t}|x\_{t-\Delta t}-x\_t|^2\\
-&=-\frac{1}{2\sigma^2\Delta t}\Big|x\_{t-\Delta t}-\big(x\_t+\sigma^2\Delta t\nabla\_x\log p(x\_t)\big)\Big|^2+\text{const}\\
-&\approx\mathcal{N}\big(x\_t+\sigma^2\Delta t\nabla\_x\log p(x\_t),\sigma^2\Delta t\mathcal{I}\big).
-\end{aligned}
-$$
+$$ \begin{aligned} \log p(x\_{t-\Delta t}|x\_t)&\approx\log p\_(x\_t)+\nabla\_x\log p(x\_t)(x\_{t-\Delta t}-x\_t)-\frac{1}{2\sigma^2\Delta t}|x\_{t-\Delta t}-x\_t|^2\\ \newline &=-\frac{1}{2\sigma^2\Delta t}\Big|x\_{t-\Delta t}-\big(x\_t+\sigma^2\Delta t\nabla\_x\log p(x\_t)\big)\Big|^2+\text{const}\\ \newline &\approx\mathcal{N}\big(x\_t+\sigma^2\Delta t\nabla\_x\log p(x\_t),\sigma^2\Delta t\mathcal{I}\big). \end{aligned}$$
 Hence, this variational formulation transforms the extremely hard conditional distribution estimation to a very simple Gaussian distribution.
 
 Recall our gold standard, MLE---as we have obtained the conditional distribution, naturally we can formulate the variational form in KL-Divergence:
@@ -304,12 +293,7 @@ Diffusion model can be viewed as the Auto-regressive model in the time domain, w
 Diffusion model can be viewed as the Flow-based model. Flow-based model starts from white noise $Z\sim\mathcal{0,\mathcal{I}\_D}$ ($D$ is the dimension of data) and use a sequence of transformations to generate $x=g\_1(g\_2(\cdots g\_t(z)))$. Each trasformation $g\_i$ has to be in very stricted form and invertible. Hence, the Deffusion model can be viewed as a more free-formed Flow-based model without restrictions and invertibility.
 
 Diffusion model can be viewed as a refined version of Variational Auto-Encoder (VAE). VAE starts from white noise $Z\sim\mathcal{N}(0,\mathcal{I}\_d), d<<D$ and generates $x=g(z)+\varepsilon, \varepsilon\sim\mathcal{N}(0,\sigma^2\mathcal{I}\_D)$. The KL-Divergence for learning VAE by MLE is:
-$$
-\begin{aligned}
-D\_{KL}&=\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)\big)\\
-&=D\_{KL}\big(p\_{data}(x)\big\|p\_\theta(x)\big)+D\_{KL}\big(q\_\phi(z|x)\big\|p\_\theta(x|z)\big).
-\end{aligned}
-$$
+$$\begin{aligned} D\_{KL}&=\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)\big)\\ \newline &=D\_{KL}\big(p\_{data}(x)\big\|p\_\theta(x)\big)+D\_{KL}\big(q\_\phi(z|x)\big\|p\_\theta(x|z)\big). \end{aligned}$$
 VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to Diffusion model that reaches the target in a thousand strokes, VAE is trying to send the golf into the hole using only one stroke. Hence, this can be very inaccurate.
 
 
