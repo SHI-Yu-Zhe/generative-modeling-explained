@@ -86,9 +86,9 @@ $$\hat{\theta}\_{MLE}=\arg\max\limits\_{\theta} L(\theta).$$
 ### Another Perspective on MLE: Kullback-Leibler Divergence
 
 Kullback-Leibler Divergence (KL-Divergence) measures the difference between two distributions $p$ and $q$, is formulated as:
-$$D\_{KL}(p \| q)=\mathbb{E}_p\Bigg\[\log\frac{p(x)}{q(x)}\Bigg\].$$
+$$D\_{KL}(p \| q)=\mathbb{E}\_p\Bigg\[\log\frac{p(x)}{q(x)}\Bigg\].$$
 A KL-Divergence's view of MLE is treating the two distributions as the groundtruth distribution of the data and the distribution estimated the model, respectively. Hence, we have:
-$$\begin{aligned}D_{KL}(p_{data}\| p_\theta)&=\mathbb{E}_{p_{data}}\big\[\log p_{data}(x)\big\]-\mathbb{E}_{p_{data}}\big\[\log p_\theta(x)\big\]\\ \newline &=-\text{Entropy}(p_{data})-L(\theta).\end{aligned}$$ 
+$$\begin{aligned}D\_{KL}(p\_{data}\| p\_\theta)&=\mathbb{E}\_{p\_{data}}\big\[\log p\_{data}(x)\big\]-\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]\\ \newline &=-\text{Entropy}(p_{data})-L(\theta).\end{aligned}$$ 
 Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Divergence between $p_{data}$ and $p\_{\theta}$. This KL-Divergence view does provide us with some insights about density estimation---the model varying $\theta$ is lying on a manifold (so-called information geometry picture) and the data density is a point that may not belong to the manifold. But we are projecting the data density point to the model manifold and MLE provides the best approximation to the data density.
 
 <p align="center">
@@ -109,35 +109,35 @@ Since we are calculating the expectation over $p\_{data}$, we cannot miss any mo
 
 ### Formulating EBM
 
-The target density $p_\theta(x)$ can be obtained as:
-$$\log p_\theta(x)=f_\theta(x)+\text{const}, $$
-where $f_\theta(x)$ is a bottom-up neural network and $const$ is a normalizing term. Transforming the $\log$ into exponential, we have:
-$$p_\theta(x)=\frac{1}{Z(\theta)}\exp\big(f_\theta(x)\big),$$
-where $f_\theta(x)$ is the negative energy and $Z(\theta)=\int\exp\big(f_\theta(x)\big)dx$ is the partition function to normalize $p_\theta(x)$.
+The target density $p\_\theta(x)$ can be obtained as:
+$$\log p\_\theta(x)=f\_\theta(x)+\text{const}, $$
+where $f\_\theta(x)$ is a bottom-up neural network and $const$ is a normalizing term. Transforming the $\log$ into exponential, we have:
+$$p\_\theta(x)=\frac{1}{Z(\theta)}\exp\big(f\_\theta(x)\big),$$
+where $f\_\theta(x)$ is the negative energy and $Z(\theta)=\int\exp\big(f\_\theta(x)\big)dx$ is the partition function to normalize $p\_\theta(x)$.
 
 ### Learning EBM
 
 We can calculate the derivative over $\theta$ using the chain rule, obtaining:
 $$
 \begin{aligned}
-\frac{\partial}{\partial\theta}\log Z(\theta)&=\frac{1}{Z(\theta)}\int\exp\big(f_\theta(x)\big)\frac{\partial}{\partial\theta}f_\theta(x)dx\\
-&=\mathbb{E}_{P_\theta}\Bigg[\frac{\partial}{\partial\theta} f_\theta(x)\Bigg],
+\frac{\partial}{\partial\theta}\log Z(\theta)&=\frac{1}{Z(\theta)}\int\exp\big(f\_\theta(x)\big)\frac{\partial}{\partial\theta}f\_\theta(x)dx\\
+&=\mathbb{E}\_{P\_\theta}\Bigg[\frac{\partial}{\partial\theta} f\_\theta(x)\Bigg],
 \end{aligned}
 $$
-where we get an important property that $\frac{\partial}{\partial\theta}\log Z(\theta)=\mathbb{E}_{P_\theta}\big[\nabla_\theta f_\theta(x)\big]$. 
+where we get an important property that $\frac{\partial}{\partial\theta}\log Z(\theta)=\mathbb{E}\_{P\_\theta}\big[\nabla\_\theta f\_\theta(x)\big]$. 
 
 Bringing the EBM formulation into the MLE formulation, we have:
 $$
 \begin{aligned}
-L(\theta)&=\frac{1}{n}\sum_{i=1}^n \log p_\theta(x_i)\\
-&=\frac{1}{n}\sum_{i=1}^n f_\theta(x_i)-\log Z(\theta),
+L(\theta)&=\frac{1}{n}\sum\_{i=1}^n \log p\_\theta(x\_i)\\
+&=\frac{1}{n}\sum\_{i=1}^n f\_\theta(x\_i)-\log Z(\theta),
 \end{aligned}
 $$
 and the derivative of $L(\theta)$ is:
 $$
 \begin{aligned}
-L'(\theta)&=\frac{1}{n}\sum_{i=1}^n\nabla_\theta f_\theta(x_i)-\mathbb{E}_{p_\theta}\big[\nabla_\theta f_\theta(x)\big]\\
-&=\mathbb{E}_{p_{data}}\big[\nabla_\theta f_\theta(x)\big]-\mathbb{E}_{p_\theta}\big[\nabla_\theta f_\theta(x)\big].
+L'(\theta)&=\frac{1}{n}\sum\_{i=1}^n\nabla\_\theta f\_\theta(x\_i)-\mathbb{E}\_{p\_\theta}\big[\nabla\_\theta f\_\theta(x)\big]\\
+&=\mathbb{E}\_{p\_{data}}\big[\nabla\_\theta f\_\theta(x)\big]-\mathbb{E}\_{p\_\theta}\big[\nabla\_\theta f\_\theta(x)\big].
 \end{aligned}
 $$
 
@@ -145,11 +145,11 @@ However, computing the expectation is extremely hard. We have to use Monte-Carlo
 
 ### Contrastive Divergence
 
-Following the KL-Divergence perspective, we can also interpret the Monte-Carlo Sampling process for EBM in a similar way: consider the model in $t$ step $\theta_t$, we have the Contrastive Divergence (CD):
+Following the KL-Divergence perspective, we can also interpret the Monte-Carlo Sampling process for EBM in a similar way: consider the model in $t$ step $\theta\_t$, we have the Contrastive Divergence (CD):
 $$
 \begin{aligned}
-C(\theta)&=D_{KL}(p_{data}(x)\parallel p_\theta(x)) - D_{KL}(p_{\theta_t}(x)\parallel p_\theta(x))\\
-&=\mathbb{E}_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}_{p_{data}}\big[\log p_\theta(x)\big]-\mathbb{E}_{p_{\theta_t}}\big[\log p_{\theta_t}(x)\big]+\mathbb{E}_{p_{\theta_t}}\big[\log p_\theta(x)\big],
+C(\theta)&=D\_{KL}(p\_{data}(x)\parallel p\_\theta(x)) - D\_{KL}(p\_{\theta\_t}(x)\parallel p\_\theta(x))\\
+&=\mathbb{E}\_{p\_{data}}\big[\log p\_{data}(x)\big]-\mathbb{E}\_{p\_{data}}\big[\log p\_\theta(x)\big]-\mathbb{E}\_{p\_{\theta\_t}}\big[\log p\_{\theta\_t}(x)\big]+\mathbb{E}\_{p\_{\theta\_t}}\big[\log p\_\theta(x)\big],
 \end{aligned}
 $$
 and the $-\log Z(\theta)$ term in $\mathbb{E}_{p_{data}}\big[\log p_\theta(x)\big]$ and $\mathbb{E}_{p_{\theta_t}}\big[\log p_\theta(x)\big]$ is cancelled by each other. This provides an important merit that $L'(\theta_t)=C'(\theta_t)$, making the computation much more tractable.
