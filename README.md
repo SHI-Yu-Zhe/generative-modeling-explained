@@ -2,11 +2,17 @@
 
 This tutorial is refined from Ying Nian Wu's tutorial on generative modeling. The tutorial goes over the key equations and algorithms for learning recent generative models, including energy-based models, diffusion/score-based models, autoregressive/flow-based models, VAEs, and GANs, and explains the connections between these models. **In contrast to most current tutorials on generative modeling from the perspective of machine learning, this tutorial is unique for providing a more basic and natural perspective form statistics.** Starting with the very basic probability background, the tutorial is extremely learner-friendly.
 
+## Table of Contents
+
+* [Highlights & Signifiance](highlights--significance)
+
 ## Highlights & Significance
 
 The tutorial connects different families of generative models from multiple perspectives---original formulation, the essence of sampling process, and variational formulation. 
 
 Sampling a high-modality distribution is hard. Diffusion model factorizes the problem of sampling from the high-modality distribution into a thousand of small incremental steps, making the sampling much more tractable. VAE follows an elegant formulation trying to sample the data distribution in a single trial, however the estimated aggregated posterior may mismatch the prior. GAN also suffers from single trial, but uses a discriminator to guide the generation.
+
+* [Back to Top](generative-modeling-explained).
 
 ## About the Instructor
 
