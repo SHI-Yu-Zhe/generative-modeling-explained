@@ -39,7 +39,7 @@ Dr. Wu introduces a smooth analogy to the golf for understanding the relations b
 
 > As long as you can count, you understand everything about probability density.
 
-Consider a clot in the 2-D space, with n example data points. **The Probability Density tells you how the points are distributed.** As the number of data points can become extremely large ($n\rightarrow\infty$), we have an almost continuous clot demonstrating the data. 
+Consider a clot in the 2-D space, with n example data points. **The Probability Density tells you how the points are distributed.** As the number of data points can become extremely large ($n\to\infty$), we have an almost continuous clot demonstrating the data. 
 
 <p align="center">
 <img src="figures/probdens.jpg" alt="probdens" width=600>
