@@ -337,6 +337,12 @@ Diffusion model can be viewed as a refined version of Variational Auto-Encoder (
 $$\begin{aligned} D\_{KL}&\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)\big)\\ \newline &=D\_{KL}\big(p\_{data}(x)\big\|p\_\theta(x)\big)+D\_{KL}\big(q\_\phi(z|x)\big\|p\_\theta(x|z)\big). \end{aligned}$$
 VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to Diffusion model that reaches the target in a thousand strokes, VAE is trying to send the golf into the hole using only one stroke. Hence, this can be very inaccurate.
 
+<p align="center">
+<img src="figures/relation.jpg" alt="relation" width=600>
+  <br>
+  <b>A visualization of the relation between different generative models from the perspective of Diffusion model</b>
+</p>
+
 *[Back to Top](#generative-modeling-explained)
 
 
