@@ -6,6 +6,7 @@ This tutorial is refined from Ying Nian Wu's tutorial on generative modeling. Th
 
 * [Highlights & Signifiance](#highlights--significance)
 * [About the Instructor](#about-the-instructor)
+* [Prerequisite: Probability Density](#prerequisite--probability-density)
 
 ## Highlights & Significance
 
@@ -111,6 +112,8 @@ Since we are calculating the expectation over $p\_{data}$, we cannot miss any mo
 <img src="figures/modecovering.jpg" alt="modecovering" width=200>
 <figcaption align = "center"><b>The model covering behavior</b></figcaption>
 </p>
+
+*[Back to Top](#generative-modeling-explained).
 
 ## Energy-based Model
 
