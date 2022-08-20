@@ -313,7 +313,7 @@ Diffusion model can be viewed as the Auto-regressive model in the time domain, w
 Diffusion model can be viewed as the Flow-based model. Flow-based model starts from white noise $Z\sim\mathcal{N}(\mathcal{0},\mathcal{I}\_D)$ ($D$ is the dimension of data) and use a sequence of transformations to generate $x=g\_1(g\_2(\cdots g\_t(z)))$. Each trasformation $g\_i$ has to be in very stricted form and invertible. Hence, the Deffusion model can be viewed as a more free-formed Flow-based model without restrictions and invertibility.
 
 Diffusion model can be viewed as a refined version of Variational Auto-Encoder (VAE). VAE starts from white noise $Z\sim\mathcal{N}(\mathcal{0},\mathcal{I}\_d), d \ll D$ and generates $x=g(z)+\varepsilon, \varepsilon\sim\mathcal{N}(0,\sigma^2\mathcal{I}\_D)$. The KL-Divergence for learning VAE by MLE is:
-$$\begin{aligned} D\_{KL}&=\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)\big)\\ \newline &=D\_{KL}\big(p\_{data}(x)\big\|p\_\theta(x)\big)+D\_{KL}\big(q\_\phi(z|x)\big\|p\_\theta(x|z)\big). \end{aligned}$$
+$$\begin{aligned} D\_{KL}&\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)\big)\\ \newline &=D\_{KL}\big(p\_{data}(x)\big\|p\_\theta(x)\big)+D\_{KL}\big(q\_\phi(z|x)\big\|p\_\theta(x|z)\big). \end{aligned}$$
 VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to Diffusion model that reaches the target in a thousand strokes, VAE is trying to send the golf into the hole using only one stroke. Hence, this can be very inaccurate.
 
 *[Back to Top](#generative-modeling-explained)
