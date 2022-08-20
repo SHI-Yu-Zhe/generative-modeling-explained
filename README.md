@@ -298,3 +298,5 @@ VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to 
 
 
 ## References
+
+* [Deep Unsupervised Learning using Nonequilibrium Thermodynamics](http://proceedings.mlr.press/v37/sohl-dickstein15.html) - ***ICML'15***, 2015. [[All Versions](https://scholar.google.com/scholar?cluster=7270166379090138707&hl=en&as_sdt=0,5)].
