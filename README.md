@@ -215,6 +215,8 @@ Though coming with the merit of equilibrium sampling, Langevin Dynamics suffers 
 $$\pi\_\beta(x)=\frac{1}{Z\_\beta(x)}\exp\big(\beta f(x)\big)q(x),$$
 where $q(x)\sim\mathcal{N}(0,\mathcal{I})$. As $\beta$ increasing from 0 to 1, we are sampling from a simple Gaussian to a highly multi-modal density. This process is called Simulated Annealing. A principled implementation of Simulated Annealing is running parallel chains to draw samples from $\beta=0$ to $\beta=1$ simultaneously, with the exchange of samples among models.
 
+*[Back to Top](#generative-modeling-explained)
+
 ## Diffusion/Score-based Models
 
 > Imagine you are playing the golf. You can exactly see where the hole $x\_0$ is. But you want to use *a thousand strokes* to shoot back to the hole. You do not want to shoot back in a stroke because the chance you hit the hole is very small. Rather, you see where the hole is, and you are going toward the hole by small steps.
