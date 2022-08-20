@@ -189,7 +189,7 @@ How does this come? Let us look back into the updating equation of Langevin Dyna
 <figcaption align = "center"><b>Explaining Langevin Dynamics with (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b></figcaption>
 </p>
 
-To analyze the phenomenon mathematically, we may look into the Taylor expansion of the testing function $\mathbb{E}\big\[h(x\_{t+\Delta t})\big\]$.Expanding $\frac{\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have opposite signs, they cancelled the effect of each other. This is identified as the Fokker-Planck effect.
+To analyze the phenomenon mathematically, we may look into the Taylor expansion of the testing function $\mathbb{E}\big\[h(x\_{t+\Delta t})\big\]$. Expanding $\frac{\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have opposite signs, they cancelled the effect of each other. This is identified as the Fokker-Planck effect.
 
 On the basis of equilibrium sampling, we are introducing score-based/diffusion models.
 
