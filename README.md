@@ -22,7 +22,7 @@ The tutorial connects different families of generative models from multiple pers
 Dr. Wu introduces a smooth analogy to the golf for understanding the relations between the generative models. In this perspective, the model expressitivity, the sampling process, and the data modality, are analogous to the sum of balls, the number of strokes, and the number of holes, respectively---more balls means the possibility to cover more holes, and more strokes means sending a ball to a hole more with more patience. The readers may employ this analogy to understand the pros and cons of different generative models.
 
 <p align="center">
-<img src="figures/golf.jpg" alt="probdens">
+<img src="figures/golf.jpg" alt="golf" width=600>
   <br>
   <b>The golf analogy</b>
 </p>
@@ -42,7 +42,7 @@ Dr. Wu introduces a smooth analogy to the golf for understanding the relations b
 Consider a clot in the 2-D space, with n example data points. **The Probability Density tells you how the points are distributed.** As the number of data points can become extremely large ($n\rightarrow\inf$), we have an almost continuous clot demonstrating the data. 
 
 <p align="center">
-<img src="figures/probdens.jpg" alt="probdens">
+<img src="figures/probdens.jpg" alt="probdens" with=600>
   <br>
   <b>A visual demonstration of probabilistic density</b>
 <!--<figcaption style="text-align:center"><b>A visual demonstration of probabilistic density</b></figcaption>-->
