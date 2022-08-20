@@ -33,8 +33,8 @@ Sampling a high-modality distribution is hard. Diffusion model factorizes the pr
 Consider a clot in the 2-D space, with n example data points. **The Probability Density tells you how the points are distributed.** As the number of data points can become extremely large ($n\rightarrow\infty$), we have an almost continuous clot demonstrating the data. 
 
 <p align="center">
-<img src="figures/probdens.jpg" alt="probdens">
-<figcaption align = "center"><b>A visual demonstration of probabilistic density</b></figcaption>
+<center><img src="figures/probdens.jpg" alt="probdens"></center>
+<center><figcaption align = "center"><b>A visual demonstration of probabilistic density</b></figcaption></center>
 </p>
 
 To Analyze the continuous density, we can discretize spaces into $\Delta x\rightarrow 0$ and $\Delta y\rightarrow 0$.
