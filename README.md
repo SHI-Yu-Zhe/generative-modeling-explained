@@ -6,7 +6,7 @@ This tutorial is refined from Ying Nian Wu's tutorial on generative modeling. Th
 
 * [Highlights & Signifiance](#highlights--significance)
 * [About the Instructor](#about-the-instructor)
-* [Probability Density](#probability-density)
+* [Prerequisite: Probability Density](#probability-density)
 
 ## Highlights & Significance
 
@@ -22,7 +22,7 @@ Sampling a high-modality distribution is hard. Diffusion model factorizes the pr
 
 *[Back to Top](#generative-modeling-explained).
 
-## Probability Density
+## Prerequisite: Probability Density <span id = "probability-density"></span>
 
 > As long as you can count, you understand everything about probability density.
 
