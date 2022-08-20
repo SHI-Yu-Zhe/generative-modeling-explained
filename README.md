@@ -17,7 +17,9 @@ This tutorial is refined from Ying Nian Wu's tutorial on generative modeling. Th
 
 The tutorial connects different families of generative models from multiple perspectives---original formulation, the essence of sampling process, and variational formulation. 
 
-Sampling a high-modality distribution is hard. Diffusion model factorizes the problem of sampling from the high-modality distribution into a thousand of small incremental steps, making the sampling much more tractable. VAE follows an elegant formulation trying to sample the data distribution in a single trial, however the estimated aggregated posterior may mismatch the prior. GAN also suffers from single trial, but uses a discriminator to guide the generation.
+**Sampling a high-modality distribution is extremely hard.** Diffusion model factorizes the problem of sampling from the high-modality distribution into a thousand of small incremental steps, making the sampling much more tractable. VAE follows an elegant formulation trying to sample the data distribution in a single trial, however the estimated aggregated posterior may mismatch the prior. GAN also suffers from single trial, but uses a discriminator to guide the generation.
+
+Dr. Wu introduces a smooth analogy to the golf for understanding the relations between the generative models. 
 
 *[Back to Top](#generative-modeling-explained)
 
