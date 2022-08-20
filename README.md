@@ -4,7 +4,7 @@ This tutorial is refined from Ying Nian Wu's tutorial on generative modeling. Th
 
 ## Table of Contents
 
-* [Highlights & Signifiance](highlights--significance)
+* [Highlights & Signifiance](#highlights--significance)
 
 ## Highlights & Significance
 
@@ -12,7 +12,7 @@ The tutorial connects different families of generative models from multiple pers
 
 Sampling a high-modality distribution is hard. Diffusion model factorizes the problem of sampling from the high-modality distribution into a thousand of small incremental steps, making the sampling much more tractable. VAE follows an elegant formulation trying to sample the data distribution in a single trial, however the estimated aggregated posterior may mismatch the prior. GAN also suffers from single trial, but uses a discriminator to guide the generation.
 
-* [Back to Top](generative-modeling-explained).
+*[Back to Top](#generative-modeling-explained).
 
 ## About the Instructor
 
