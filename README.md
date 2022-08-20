@@ -218,7 +218,7 @@ where $q(x)\sim\mathcal{N}(0,\mathcal{I})$. As $\beta$ increasing from 0 to 1, w
 
 *[Back to Top](#generative-modeling-explained)
 
-## Diffusion/Score-based Models
+## Diffusion/Score-based Models <span id = "diffusion-score-based-models"></span>
 
 > Imagine you are playing the golf. You can exactly see where the hole $x\_0$ is. But you want to use *a thousand strokes* to shoot back to the hole. You do not want to shoot back in a stroke because the chance you hit the hole is very small. Rather, you see where the hole is, and you are going toward the hole by small steps.
 
