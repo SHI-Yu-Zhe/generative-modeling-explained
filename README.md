@@ -303,3 +303,7 @@ VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to 
 
 * [Denoising Diffusion Probabilistic Models](https://proceedings.neurips.cc/paper/2020/hash/4c5bcfec8584af0d967f1ab10179ca4b-Abstract.html) - ***NeurIPS'20***, 2020. [[All Versions](https://scholar.google.com/scholar?cluster=622631041436591387&hl=en&as_sdt=0,5)].
 
+* [Score-Based Generative Modeling through Stochastic Differential Equations](https://openreview.net/forum?id=PxTIG12RRHS&utm_campaign=NLP%20News&utm_medium=email&utm_source=Revue%20newsletter) - ***ICLR'20***, 2020. [[All Versions](https://scholar.google.com/scholar?cluster=14592788616550656262&hl=en&as_sdt=0,5)].
+
+* [Divergence Triangle for Joint Training of Generator Model, Energy-based Model, and Inference Model](https://arxiv.org/abs/1812.10907) - ***CVPR'19***, 2019. [[All Versions](https://scholar.google.com/scholar?cluster=13705512978997739813&hl=en&as_sdt=0,5)].
+
