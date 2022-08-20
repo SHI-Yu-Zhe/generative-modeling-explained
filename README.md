@@ -111,6 +111,7 @@ Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Di
 
 <p align="center">
 <img src="figures/kldiv.jpg" alt="kldiv" width=200>
+  <br>
   <b>Projecting data to the model manifold</b>
 <!--<figcaption align = "center"><b>Projecting data to the model manifold</b></figcaption>-->
 </p>
@@ -119,6 +120,7 @@ Since we are calculating the expectation over $p\_{data}$, we cannot miss any mo
 
 <p align="center">
 <img src="figures/modecovering.jpg" alt="modecovering" width=200>
+  <br>
   <b>The model covering behavior</b>
 <!--<figcaption align = "center"><b>The model covering behavior</b></figcaption>-->
 </p>
@@ -188,6 +190,7 @@ where $\nabla\_x\log\pi(x)$ is the gradient of the target density for executing 
 
 <p align="center">
 <img src="figures/chain.jpg" alt="chain" width=500>
+  <br>
   <b>A visualization of the Langevin Dynamics</b>
 <!--<figcaption align = "center"><b>A visualization of the Langevin Dynamics</b></figcaption>-->
 </p>
@@ -209,6 +212,7 @@ How does this come? Let us look back into the updating equation of Langevin Dyna
 
 <p align="center">
 <img src="figures/langevin.jpg" alt="langevin" width=200>
+  <br>
   <b>Explaining Langevin Dynamics with (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b>
 <!--<figcaption align = "center"><b>Explaining Langevin Dynamics with (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b></figcaption>-->
 </p>
@@ -281,6 +285,7 @@ and this gives us a Denoising Auto-Encoder. We can parametrize this in a U-Net. 
 
 <p align="center">
 <img src="figures/unet.jpg" alt="unet" width=200>
+  <br>
   <b>U-Net: encoding the noisy version of the image to decode the clean version of the image</b>
 <!--<figcaption align = "center"><b>U-Net: encoding the noisy version of the image to decode the clean version of the image</b></figcaption>-->
 </p>
