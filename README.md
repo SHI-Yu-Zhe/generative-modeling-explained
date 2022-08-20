@@ -24,7 +24,7 @@ Dr. Wu introduces a smooth analogy to the golf for understanding the relations b
 <p align="center">
 <img src="figures/golf.jpg" alt="golf" width=600>
   <br>
-  <b>The golf analogy</b>
+  <b>A visulization of the golf analogy</b>
 </p>
 
 *[Back to Top](#generative-modeling-explained)
