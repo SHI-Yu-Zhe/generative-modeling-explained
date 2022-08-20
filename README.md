@@ -110,14 +110,16 @@ Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Di
 
 <p align="center">
 <img src="figures/kldiv.jpg" alt="kldiv" width=200>
-<figcaption align = "center"><b>Projecting data to the model manifold</b></figcaption>
+  <b>Projecting data to the model manifold</b>
+<!--<figcaption align = "center"><b>Projecting data to the model manifold</b></figcaption>-->
 </p>
 
 Since we are calculating the expectation over $p\_{data}$, we cannot miss any mode of the data, otherwise we get a rather big KL-Divergence. This is the *mode covering* behavior of generative models. This raises a core problem of generative modeling---if your model is not expressive enough, you end up with either diffused or dispersed densities. In the remainder of this tutorial, we are going over different models trying to resolve the problem.
 
 <p align="center">
 <img src="figures/modecovering.jpg" alt="modecovering" width=200>
-<figcaption align = "center"><b>The model covering behavior</b></figcaption>
+  <b>The model covering behavior</b>
+<!--<figcaption align = "center"><b>The model covering behavior</b></figcaption>-->
 </p>
 
 *[Back to Top](#generative-modeling-explained)
@@ -185,7 +187,8 @@ where $\nabla\_x\log\pi(x)$ is the gradient of the target density for executing 
 
 <p align="center">
 <img src="figures/chain.jpg" alt="chain" width=500>
-<figcaption align = "center"><b>A visualization of the Langevin Dynamics</b></figcaption>
+  <b>A visualization of the Langevin Dynamics</b>
+<!--<figcaption align = "center"><b>A visualization of the Langevin Dynamics</b></figcaption>-->
 </p>
 
 ### Stochastic Differential Equation
@@ -205,7 +208,8 @@ How does this come? Let us look back into the updating equation of Langevin Dyna
 
 <p align="center">
 <img src="figures/langevin.jpg" alt="langevin" width=200>
-<figcaption align = "center"><b>Explaining Langevin Dynamics with (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b></figcaption>
+  <b>Explaining Langevin Dynamics with (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b>
+<!--<figcaption align = "center"><b>Explaining Langevin Dynamics with (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b></figcaption>-->
 </p>
 
 To analyze the phenomenon mathematically, we may look into the Taylor expansion of the testing function $\mathbb{E}\big\[h(x\_{t+\Delta t})\big\]$. Expanding $\frac{\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have opposite signs, they cancelled the effect of each other. This is identified as the Fokker-Planck effect.
@@ -276,7 +280,8 @@ and this gives us a Denoising Auto-Encoder. We can parametrize this in a U-Net. 
 
 <p align="center">
 <img src="figures/unet.jpg" alt="unet" width=200>
-<figcaption align = "center"><b>U-Net: encoding the noisy version of the image to decode the clean version of the image</b></figcaption>
+  <b>U-Net: encoding the noisy version of the image to decode the clean version of the image</b>
+<!--<figcaption align = "center"><b>U-Net: encoding the noisy version of the image to decode the clean version of the image</b></figcaption>-->
 </p>
 
 Under this implementation, we take relatively big steps to estimate noise:
