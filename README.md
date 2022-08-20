@@ -15,13 +15,13 @@ The tutorial connects different families of generative models from multiple pers
 
 Sampling a high-modality distribution is hard. Diffusion model factorizes the problem of sampling from the high-modality distribution into a thousand of small incremental steps, making the sampling much more tractable. VAE follows an elegant formulation trying to sample the data distribution in a single trial, however the estimated aggregated posterior may mismatch the prior. GAN also suffers from single trial, but uses a discriminator to guide the generation.
 
-*[Back to Top](#generative-modeling-explained).
+*[Back to Top](#generative-modeling-explained)
 
 ## About the Instructor
 
 [Dr. Ying Nian Wu](http://www.stat.ucla.edu/~ywu/) is currently a professor in Department of Statistics, UCLA. He received his A.M. degree and Ph.D. degree in statistics from Harvard University in 1994 and 1996 respectively. He was an assistant professor in the Department of Statistics, University of Michigan from 1997 to 1999. He joined UCLA in 1999. He has been a full professor since 2006. Wu’s research areas include generative modeling, representation learning, computer vision, computational neuroscience, and bioinformatics.
 
-*[Back to Top](#generative-modeling-explained).
+*[Back to Top](#generative-modeling-explained)
 
 ## Prerequisite: Probability Density <span id = "probability-density"></span>
 
@@ -73,6 +73,8 @@ This equation shows that the joint distribution lies in the center of probabilit
 
 The expectation $\mathbb{E}$ measures the average of the corresponding distribution in the long run. Visually, $\mathbb{E}\_{p(x,y)}$ is the average over all the $n$ points, $\mathbb{E}\_{p(x)}$ is the average over all points projected to the x-axis, and $\mathbb{E}\_{p(y|x)}$ is the average with the points in the vertical bin $(x,x+\Delta x)$.
 
+*[Back to Top](#generative-modeling-explained)
+
 ## The Core Problem: Density Estimation <span id = "density-estimation"></span>
 
 > The *gold standard* for density estimation is Maximum Likelihood Estimation.
@@ -114,7 +116,7 @@ Since we are calculating the expectation over $p\_{data}$, we cannot miss any mo
 <figcaption align = "center"><b>The model covering behavior</b></figcaption>
 </p>
 
-*[Back to Top](#generative-modeling-explained).
+*[Back to Top](#generative-modeling-explained)
 
 ## Energy-based Model
 
