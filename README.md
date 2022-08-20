@@ -34,7 +34,7 @@ Consider a clot in the 2-D space, with n example data points. **The Probability 
 
 <p align="center">
 <img src="figures/probdens.jpg" alt="probdens">
-  <em>Figure 1 training process of NN.</em>
+  <b>A visual demonstration of probabilistic density</b>
 <!--<figcaption style="text-align:center"><b>A visual demonstration of probabilistic density</b></figcaption>-->
 </p>
 
