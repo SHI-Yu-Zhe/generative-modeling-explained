@@ -316,6 +316,8 @@ Diffusion model can be viewed as a refined version of Variational Auto-Encoder (
 $$\begin{aligned} D\_{KL}&=\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)\big)\\ \newline &=D\_{KL}\big(p\_{data}(x)\big\|p\_\theta(x)\big)+D\_{KL}\big(q\_\phi(z|x)\big\|p\_\theta(x|z)\big). \end{aligned}$$
 VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to Diffusion model that reaches the target in a thousand strokes, VAE is trying to send the golf into the hole using only one stroke. Hence, this can be very inaccurate.
 
+*[Back to Top](#generative-modeling-explained)
+
 
 ## Bibliography
 
@@ -326,5 +328,7 @@ VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to 
 * [Denoising Diffusion Probabilistic Models](https://proceedings.neurips.cc/paper/2020/hash/4c5bcfec8584af0d967f1ab10179ca4b-Abstract.html) - ***NeurIPS'20***, 2020. [[All Versions](https://scholar.google.com/scholar?cluster=622631041436591387&hl=en&as_sdt=0,5)].
 
 * [Score-Based Generative Modeling through Stochastic Differential Equations](https://openreview.net/forum?id=PxTIG12RRHS&utm_campaign=NLP%20News&utm_medium=email&utm_source=Revue%20newsletter) - ***ICLR'20***, 2020. [[All Versions](https://scholar.google.com/scholar?cluster=14592788616550656262&hl=en&as_sdt=0,5)].
+
+*[Back to Top](#generative-modeling-explained)
 
 
