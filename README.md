@@ -8,6 +8,7 @@ This tutorial is refined from Ying Nian Wu's tutorial on generative modeling. Th
 * [About the Instructor](#about-the-instructor)
 * [Prerequisite: Probability Density](#probability-density)
 * [The Core Problem: Density Estimation](#density-estimation)
+* [Energy-based Model](#energy-based-model)
 
 ## Highlights & Significance
 
