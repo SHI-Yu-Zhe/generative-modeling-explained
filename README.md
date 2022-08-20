@@ -42,7 +42,7 @@ Dr. Wu introduces a smooth analogy to the golf for understanding the relations b
 Consider a clot in the 2-D space, with n example data points. **The Probability Density tells you how the points are distributed.** As the number of data points can become extremely large ($n\rightarrow\inf$), we have an almost continuous clot demonstrating the data. 
 
 <p align="center">
-<img src="figures/probdens.jpg" alt="probdens" with=600>
+<img src="figures/probdens.jpg" alt="probdens" width=600>
   <br>
   <b>A visual demonstration of probabilistic density</b>
 <!--<figcaption style="text-align:center"><b>A visual demonstration of probabilistic density</b></figcaption>-->
