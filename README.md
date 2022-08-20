@@ -7,6 +7,7 @@ This tutorial is refined from Ying Nian Wu's tutorial on generative modeling. Th
 * [Highlights & Signifiance](#highlights--significance)
 * [About the Instructor](#about-the-instructor)
 * [Prerequisite: Probability Density](#probability-density)
+* [The Core Problem: Density Estimation](#density-estimation)
 
 ## Highlights & Significance
 
@@ -72,7 +73,7 @@ This equation shows that the joint distribution lies in the center of probabilit
 
 The expectation $\mathbb{E}$ measures the average of the corresponding distribution in the long run. Visually, $\mathbb{E}\_{p(x,y)}$ is the average over all the $n$ points, $\mathbb{E}\_{p(x)}$ is the average over all points projected to the x-axis, and $\mathbb{E}\_{p(y|x)}$ is the average with the points in the vertical bin $(x,x+\Delta x)$.
 
-## The Core Problem: Density Estimation
+## The Core Problem: Density Estimation <span id = "density-estimation"></span>
 
 > The *gold standard* for density estimation is Maximum Likelihood Estimation.
 
