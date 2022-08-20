@@ -10,6 +10,7 @@ This tutorial is refined from Ying Nian Wu's tutorial on generative modeling. Th
 * [The Core Problem: Density Estimation](#density-estimation)
 * [Energy-based Model](#energy-based-model)
 * [Diffusion/score-based Models](#diffusion-score-based-models)
+* [Bibliography](#bibliography)
 
 ## Highlights & Significance
 
@@ -316,7 +317,7 @@ $$\begin{aligned} D\_{KL}&=\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)
 VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to Diffusion model that reaches the target in a thousand strokes, VAE is trying to send the golf into the hole using only one stroke. Hence, this can be very inaccurate.
 
 
-## References
+## Bibliography
 
 * [Divergence Triangle for Joint Training of Generator Model, Energy-based Model, and Inference Model](https://arxiv.org/abs/1812.10907) - ***CVPR'19***, 2019. [[All Versions](https://scholar.google.com/scholar?cluster=13705512978997739813&hl=en&as_sdt=0,5)].
 
