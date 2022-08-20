@@ -6,7 +6,7 @@ This tutorial is refined from Ying Nian Wu's tutorial on generative modeling. Th
 
 * [Highlights & Signifiance](#highlights--significance)
 * [About the Instructor](#about-the-instructor)
-* [Prerequisite: Probability Density](#prerequisite--probability-density)
+* [Prerequisite: Probability Density](#prerequisite:-probability-density)
 
 ## Highlights & Significance
 
