@@ -9,6 +9,7 @@ This tutorial is refined from Ying Nian Wu's tutorial on generative modeling. Th
 * [Prerequisite: Probability Density](#probability-density)
 * [The Core Problem: Density Estimation](#density-estimation)
 * [Energy-based Model](#energy-based-model)
+* [Sampling Process for Learning EBM](#sampling-process-for-learning-ebm)
 * [Diffusion/score-based Models](#diffusion-score-based-models)
 * [Bibliography](#bibliography)
 
