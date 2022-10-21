@@ -360,5 +360,6 @@ VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to 
 
 *[Back to Top](#generative-modeling-explained)
 
-<iframe src="https://82.157.136.15:10056/report/4"></iframe>
-
+<p align="center">
+  <iframe src="http://82.157.136.15:10056/report/4"></iframe>
+</p>
