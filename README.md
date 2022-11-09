@@ -41,7 +41,7 @@ This tutorial entry is composed by Yu-Zhe Shi under the supervision of Dr. Ying 
 
 > As long as you can count, you understand everything about probability density.
 
-Consider a clot in the 2-D space, with n example data points. **The Probability Density tells you how the points are distributed.** As the number of data points can become extremely large ($n\rightarrow\infty$), we have an almost continuous clot demonstrating the data. 
+Consider a clot in the 2-D space, with n example data points. **The Probability Density tells you how the points are distributed.** As the number of data points can become extremely large ($n\to\infty$), we have an almost continuous clot demonstrating the data. 
 
 <p align="center">
 <img src="figures/overview.gif" alt="probdens" width="75%">
@@ -54,7 +54,7 @@ Consider a clot in the 2-D space, with n example data points. **The Probability 
   <b>A visual demonstration of probabilistic density</b>
 </p> -->
 
-To Analyze the continuous density, we can discretize spaces into $\Delta x\rightarrow 0$ and $\Delta y\rightarrow 0$.
+To Analyze the continuous density, we can discretize spaces into $\Delta x\to 0$ and $\Delta y\to 0$.
 
 ### Understand Basic Concepts by Counting
 
