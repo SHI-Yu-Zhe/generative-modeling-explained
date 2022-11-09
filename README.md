@@ -113,7 +113,7 @@ $$
 $$
 
 Our objective is to maximize the log-likelihood function, that $\theta$ to assign maximum probabilistic density to all the examples:
-$$\hat{\theta}\_{MLE}=\arg\max\limits\_{\theta} L(\theta).$$
+$$\hat{\theta}_{MLE}=\arg\max\limits\_{\theta} L(\theta).$$
 
 ### Another Perspective on MLE: Kullback-Leibler Divergence
 
