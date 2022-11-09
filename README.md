@@ -107,7 +107,7 @@ Given finite $n$ example $x_1,x_2,\dots,x_n \sim p_{data}(x), x\in\mathbb{R}^D$,
 Now we come to the core of the MLE---defining the log-likelihood function:
 $$L(\theta)=\frac{1}{n}\sum_{i=1}^n \log p_\theta(x_i).$$
 The underlying logic of taking $\log$ of the density is: density is always positive, and $\log$ function maps it to the whole range. As the function is essentially an average over all the data points, we can derive it to an expectation form:
-$$\begin{align} L(\theta)&=\frac{1}{n}\sum\_{i=1}^n \log p\_\theta(x\_i)\\ &=\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\].\end{align}$$
+$$\begin{align} L(\theta)&=\frac{1}{n}\sum_{i=1}^n \log p_\theta(x_i)\\ &=\mathbb{E}_{p_{data}}\big[\log p_\theta(x)\big].\end{align}$$
 Our objective is to maximize the log-likelihood function, that $\theta$ to assign maximum probabilistic density to all the examples:
 $$\hat{\theta}\_{MLE}=\arg\max\limits\_{\theta} L(\theta).$$
 
