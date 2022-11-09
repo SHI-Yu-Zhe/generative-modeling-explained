@@ -229,17 +229,17 @@ where $\nabla_x\log\pi(x)$ is the gradient of the target density for executing t
 
 ### Stochastic Differential Equation
 
-Consider the time step becomes very small, *i.e.*, $\Delta t\rightarrow 0$---the updating equation becomes a Stochastic Differential Equation (SDE):
-$$dx\_t=\frac{1}{2}\nabla\_x\log\pi(x)dt+dB\_t,$$
-where $B\_t$ denotes $e\_t\sqrt{\Delta t}$. 
+Consider the time step becomes very small, *i.e.*, $\Delta t\to 0$---the updating equation becomes a Stochastic Differential Equation (SDE):
+$$dx_t=\frac{1}{2}\nabla_x\log\pi(x)dt+dB_t,$$
+where $B_t$ denotes $e_t\sqrt{\Delta t}$. 
 
 A more sophiscated version of MCMC Sampling is Hamiltonian Monte-Carlo (HMC), which adds a momentum to smooth the trajectory.
 
 ### Understanding Langevin Dynamics: Equilibrium Sampling
 
-An interesting observation in Langevin Dynamics is: once $p\_t(x)$ have converged to $\pi\_t(x)$, then Langevin Dynamics will maintain the marginal distribution of $\pi\_t(x)$ in the following steps, keeping it at equilibrium. 
+An interesting observation in Langevin Dynamics is: once $p_t(x)$ have converged to $\pi_t(x)$, then Langevin Dynamics will maintain the marginal distribution of $\pi_t(x)$ in the following steps, keeping it at equilibrium. 
 
-How does this come? Let us look back into the updating equation of Langevin Dynamics, into the two terms---the gradient ascent term $\frac{\Delta t}{2}\nabla\_x\log\pi(x)$ and the perturbation term $e\_t\sqrt{\Delta t}$. Imagine an analogous scene that we are working with many particles instead of only sampling one point each time. In the gradient ascent step, as the model tends to update according to the gradient, the particles are *squeezed* to areas with more particles, thus making the density peaks sharper. In the perturbation step, as we are adding variance, the model become diffused, thus making the density more smooth. The two terms counteract the effect of each other---the gradient ascent term push the density to be more sharp at local modes, while the perturbation term disperse the local modes to smooth the density.
+How does this come? Let us look back into the updating equation of Langevin Dynamics, into the two terms---the gradient ascent term $\frac{\Delta t}{2}\nabla_x\log\pi(x)$ and the perturbation term $e_t\sqrt{\Delta t}$. Imagine an analogous scene that we are working with many particles instead of only sampling one point each time. In the gradient ascent step, as the model tends to update according to the gradient, the particles are *squeezed* to areas with more particles, thus making the density peaks sharper. In the perturbation step, as we are adding variance, the model become diffused, thus making the density more smooth. The two terms counteract the effect of each other---the gradient ascent term push the density to be more sharp at local modes, while the perturbation term disperse the local modes to smooth the density.
 
 
 <p align="center">
@@ -248,14 +248,14 @@ How does this come? Let us look back into the updating equation of Langevin Dyna
   <b>Explaining Langevin Dynamics with equilibrium sampling: (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b>
 </p>
 
-To analyze the phenomenon mathematically, we may look into the Taylor expansion of the testing function $\mathbb{E}\big\[h(x\_{t+\Delta t})\big\]$. Expanding $\frac{\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have opposite signs, they cancelled the effect of each other. This is identified as the Fokker-Planck effect.
+To analyze the phenomenon mathematically, we may look into the Taylor expansion of the testing function $\mathbb{E}\big[h(x_{t+\Delta t})\big]$. Expanding $\frac{\Delta t}{2}\nabla_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $e_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have opposite signs, they cancelled the effect of each other. This is identified as the Fokker-Planck effect.
 
 On the basis of equilibrium sampling, we are introducing score-based/diffusion models.
 
 ### Tempering & Annealing
 
-Though coming with the merit of equilibrium sampling, Langevin Dynamics suffers from very slow convergence, especially when the model density has a lot of localized modes (high modalities). To address this problem, we introduce a temperature parameter $\beta\in\[0,1\]$ into the EBM formula:
-$$\pi\_\beta(x)=\frac{1}{Z\_\beta(x)}\exp\big(\beta f(x)\big)q(x),$$
+Though coming with the merit of equilibrium sampling, Langevin Dynamics suffers from very slow convergence, especially when the model density has a lot of localized modes (high modalities). To address this problem, we introduce a temperature parameter $\beta\in[0,1]$ into the EBM formula:
+$$\pi_\beta(x)=\frac{1}{Z_\beta(x)}\exp\big(\beta f(x)\big)q(x),$$
 where $q(x)\sim\mathcal{N}(0,\mathcal{I})$. As $\beta$ increasing from 0 to 1, we are sampling from a simple Gaussian to a highly multi-modal density. This process is called Simulated Annealing. A principled implementation of Simulated Annealing is running parallel chains to draw samples from $\beta=0$ to $\beta=1$ simultaneously, with the exchange of samples among models.
 
 *[Back to Top](#generative-modeling-explained)
