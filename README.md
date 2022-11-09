@@ -44,7 +44,7 @@ This tutorial entry is composed by Yu-Zhe Shi under the supervision of Dr. Ying 
 Consider a clot in the 2-D space, with n example data points. **The Probability Density tells you how the points are distributed.** As the number of data points can become extremely large ($n\to\infty$), we have an almost continuous clot demonstrating the data. 
 
 <p align="center">
-<img src="figures/overview.gif" alt="probdens" style="width:80%">
+<img src="figures/overview.gif" alt="probdens" width="75%">
   <br>
   <b>A visual demonstration of probabilistic density</b>
 </p>
@@ -133,7 +133,7 @@ Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Di
 Since we are calculating the expectation over $p\_{data}$, we cannot miss any mode of the data, otherwise we get a rather big KL-Divergence. This is the *mode covering* behavior of generative models. This raises a core problem of generative modeling---if your model is not expressive enough, you end up with either diffused or dispersed densities. In the remainder of this tutorial, we are going over different models trying to resolve the problem.
 
 <p align="center">
-<img src="figures/mode_covering.gif" alt="modecovering" style="width:67%">
+<img src="figures/mode_covering.gif" alt="modecovering" width="67%">
   <br>
   <b>The mode covering behavior</b>
 </p>
@@ -172,7 +172,7 @@ $$\begin{aligned}C(\theta)&=D\_{KL}(p\_{data}(x)\parallel p\_\theta(x)) - D\_{KL
 and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]$ and $\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_\theta(x)\big\]$ is cancelled by each other. This provides an important merit that $L'(\theta\_t)=C'(\theta\_t)$, making the computation much more tractable.
 
 <p align="center">
-<img src="figures/contrastive_divergence.gif" alt="contrastive divergence" style="width:67%">
+<img src="figures/contrastive_divergence.gif" alt="contrastive divergence" width="67%">
   <br>
   <b>A visual demonstration of contrastive divergence</b>
 </p>
@@ -182,7 +182,7 @@ and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(
 If we treat the current model $p\_{\theta\_t}$ as an actor generating synthesized examples, and the learned model $p\_{\theta}$ as a critic---the current model is criticized to get closer to the real data density and away from current model density---we are obtaining an adversarial interpretation of CD. This reflects the idea of W-GAN. 
 
 <p align="center">
-<img src="figures/mode_chasing.gif" alt="modechasing" style="width:67%">
+<img src="figures/mode_chasing.gif" alt="modechasing" width="67%">
   <br>
   <b>The mode chasing behavior in W-GAN</b>
 </p>
@@ -229,7 +229,7 @@ How does this come? Let us look back into the updating equation of Langevin Dyna
 
 
 <p align="center">
-<img src="figures/equilibrium.gif" alt="langevin" style="width:67%">
+<img src="figures/equilibrium.gif" alt="langevin" width="67%">
   <br>
   <b>Explaining Langevin Dynamics with equilibrium sampling: (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b>
 </p>
@@ -263,7 +263,7 @@ Let us look into the equation, where $\delta e\_t\sqrt{\Delta t}$ is the random 
 We can also look into the Taylor expansion of the testing function $\mathbb{E}\big\[h(x\_{t+\Delta t})\big\]$. Expanding $\frac{\delta^2\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $\delta e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have the same sign, instead of cancelling the effect of each other, they actually have the same effect. This is the non-equilibrium sampling process.
 
 <p align="center">
-<img src="figures/nonequilibrium_forward.gif" alt="nonequilibrium forward" style="width:67%">
+<img src="figures/nonequilibrium_forward.gif" alt="nonequilibrium forward" width="67%">
   <br>
   <b>A visual demonstration of the forward time in non-equilibrium sampling</b>
 </p>
@@ -284,7 +284,7 @@ $$dx\_t=-\frac{\delta^2}{2}\nabla\_x\log p\_t(x\_t)dt,$$
 where $p\_t(x\_t)$ is the image density in noise level $t$.
 
 <p align="center">
-<img src="figures/nonequilibrium_reverse_ODE.gif" alt="nonequilibrium reverse ODE" style="width:67%">
+<img src="figures/nonequilibrium_reverse_ODE.gif" alt="nonequilibrium reverse ODE" width="67%">
   <br>
   <b>A visual demonstration of the reverse time in non-equilibrium sampling (ODE)</b>
 </p>
@@ -294,7 +294,7 @@ $$dx\_t=-\delta^2\nabla\_x\log p\_t(x\_t)+\delta d\tilde{B}\_t,$$
 where $d\tilde{B}\_t=d\tilde{e}\_t\sqrt{\Delta t}=\frac{\tilde{e}dt}{2\sqrt{\Delta t}}$. The SDE formulation can be interpreted as going two reverse steps from $p\_{t+\Delta t}$ to $p\_{t-\Delta t}$, then going one forward step from $p\_{t-\Delta t}$ to $p\_t$. This provides a merit that SDE is more appliable if we cannot estimate $p\_t$ accurately.
 
 <p align="center">
-<img src="figures/nonequilibrium_reverse_SDE.gif" alt="nonequilibrium reverse SDE" style="width:67%">
+<img src="figures/nonequilibrium_reverse_SDE.gif" alt="nonequilibrium reverse SDE" width="67%">
   <br>
   <b>A visual demonstration of the reverse time in non-equilibrium sampling (SDE)</b>
 </p>
@@ -318,7 +318,7 @@ $$\min\limits\_{\theta}\Big|x\_0-\big(x\_t+\sigma^2ts\_\theta(x\_t,t)\big)\Big|^
 and this gives us a Denoising Auto-Encoder. We can parametrize this in a U-Net. A U-Net encodes the noisy version of the image and decodes back to the clean version of the image, with the encoder and decoder sharing parameters. We can learn a single U-Net for all levels of noise by taking noisy level $x\_t$ and $t$ as the input variables of the model. $t$ can be embedded as expressive vectors $\sin\omega t+\cos\omega t$, which is similar to the positional encoding in the Transformer model. 
 
 <p align="center">
-<img src="figures/U-Net.jpg" alt="unet" style="width:50%">
+<img src="figures/U-Net.jpg" alt="unet" width="67%">
   <br>
   <b>U-Net: encoding the noisy version of the image to decode the clean version of the image</b>
 </p>
@@ -362,7 +362,7 @@ $$\begin{aligned} D\_{KL}&\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)\
 VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to Diffusion model that reaches the target in a thousand strokes, VAE is trying to send the golf into the hole using only one stroke. Hence, this can be very inaccurate.
 
 <p align="center">
-<img src="figures/relation.jpg" alt="relation" style="width:75%">
+<img src="figures/relation.jpg" alt="relation" width="75%">
   <br>
   <b>A visualization of the relation between different generative models from the perspective of Diffusion model</b>
 </p>
@@ -377,14 +377,16 @@ The following animations show the two pairs of counterparts that needs distincti
 </p>
 
 <p align="center">
-<img src="figures/contrastive_divergence.gif" alt="cd vs em 1" style="width:45%">
-<img src="figures/em_algorithm.gif" alt="cd vs em 2" style="width:45%">
+<img src="figures/contrastive_divergence.gif" alt="cd vs em 1" width="45%">
+<img src="figures/em_algorithm.gif" alt="cd vs em 2" width="45%">
   <br>
   <b>Contrastive divergence vs. EM algorithm</b>
 </p>
 
 <p align="center">
-<img src="figures/equilibrium.gif" alt="eq vs non 1" style="width:30%"><img src="figures/nonequilibrium_forward.gif" alt="eq vs non 2" style="width:30%"><img src="figures/nonequilibrium_reverse_ODE.gif" alt="eq vs non 3" style="width:30%">
+<img src="figures/equilibrium.gif" alt="eq vs non 1" width="30%">
+<img src="figures/nonequilibrium_forward.gif" alt="eq vs non 2" width="30%">
+<img src="figures/nonequilibrium_reverse_ODE.gif" alt="eq vs non 3" width="30%">
   <br>
   <b>Equilibrium sampling vs. non-equilibrium sampling</b>
 </p>
