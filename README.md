@@ -118,11 +118,11 @@ $$\hat{\theta}\_{MLE}=\arg\max\limits\_{\theta} L(\theta).$$
 ### Another Perspective on MLE: Kullback-Leibler Divergence
 
 Kullback-Leibler Divergence (KL-Divergence) measures the difference between two distributions $p$ and $q$, is formulated as:
-$$D_{KL}(p | q)=\mathbb{E}\_p\Bigg[\log\frac{p(x)}{q(x)}\Bigg].$$
+$$D_{KL}(p \| q)=\mathbb{E}\_p\Bigg[\log\frac{p(x)}{q(x)}\Bigg].$$
 A KL-Divergence's view of MLE is treating the two distributions as the groundtruth distribution of the data and the distribution estimated the model, respectively. Hence, we have:
 
 $$
-\begin{aligned}D_{KL}(p_{data} |  p_\theta)&=\mathbb{E}\_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big]\\\ &=-\text{Entropy}(p_{data})-L(\theta).\end{aligned}
+\begin{aligned}D_{KL}(p_{data} \|  p_\theta)&=\mathbb{E}\_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big]\\\ &=-\text{Entropy}(p_{data})-L(\theta).\end{aligned}
 $$ 
 
 Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Divergence between $p_{data}$ and $p\_{\theta}$. This KL-Divergence view does provide us with some insights about density estimation---the model varying $\theta$ is lying on a manifold (so-called information geometry picture) and the data density is a point that may not belong to the manifold. But we are projecting the data density point to the model manifold and MLE provides the best approximation to the data density.
@@ -178,10 +178,10 @@ However, computing the expectation is extremely hard. We have to use Monte-Carlo
 Following the KL-Divergence perspective, we can also interpret the Monte-Carlo Sampling process for EBM in a similar way: consider the model in $t$ step $\theta_t$, we have the Contrastive Divergence (CD):
 
 $$
-\begin{aligned}C(\theta)&=D_{KL}(p_{data}(x)\parallel p_\theta(x)) - D_{KL}(p_{\theta_t}(x)\parallel p_\theta(x))\\\ &=\mathbb{E}\_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big]-\mathbb{E}\_{p_{\theta_t}}\big[\log p_{\theta_t}(x)\big]+\mathbb{E}\_{p_{\theta_t}}\big[\log p_\theta(x)\big],\end{aligned}
+\begin{aligned}C(\theta)&=D_{KL}(p_{data}(x)\| p_\theta(x)) - D_{KL}(p_{\theta_t}(x)\| p_\theta(x))\\\ &=\mathbb{E}\_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big]-\mathbb{E}\_{p_{\theta_t}}\big[\log p_{\theta_t}(x)\big]+\mathbb{E}\_{p_{\theta_t}}\big[\log p_\theta(x)\big],\end{aligned}
 $$
 
-and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big]$ and $\mathbb{E}\_{p_{\theta_t}}\big[\log p_\theta(x)\big]$ is cancelled by each other. This provides an important merit that $L'(\theta\_t)=C'(\theta\_t)$, making the computation much more tractable.
+and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big]$ and $\mathbb{E}\_{p_{\theta_t}}\big[\log p_\theta(x)\big]$ is cancelled by each other. This provides an important merit that $L'(\theta_t)=C'(\theta_t)$, making the computation much more tractable.
 
 <p align="center">
 <img src="figures/contrastive_divergence.gif" alt="contrastive divergence" width="67%">
@@ -191,7 +191,7 @@ and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\
 
 ### Another Interpretation: Self-Adversarial Training
 
-If we treat the current model $p_{\theta\_t}$ as an actor generating synthesized examples, and the learned model $p_{\theta}$ as a critic---the current model is criticized to get closer to the real data density and away from current model density---we are obtaining an adversarial interpretation of CD. This reflects the idea of W-GAN. 
+If we treat the current model $p_{\theta_t}$ as an actor generating synthesized examples, and the learned model $p_{\theta}$ as a critic---the current model is criticized to get closer to the real data density and away from current model density---we are obtaining an adversarial interpretation of CD. This reflects the idea of W-GAN. 
 
 <p align="center">
 <img src="figures/mode_chasing.gif" alt="modechasing" width="67%">
@@ -262,7 +262,7 @@ where $q(x)\sim\mathcal{N}(0,\mathcal{I})$. As $\beta$ increasing from 0 to 1, w
 
 ## Diffusion/Score-based Models <span id = "diffusion-score-based-models"></span>
 
-> Imagine you are playing the golf. You can exactly see where the hole $x\_0$ is. But you want to use *a thousand strokes* to shoot back to the hole. You do not want to shoot back in a stroke because the chance you hit the hole is very small. Rather, you see where the hole is, and you are going toward the hole by small steps.
+> Imagine you are playing the golf. You can exactly see where the hole $x_0$ is. But you want to use *a thousand strokes* to shoot back to the hole. You do not want to shoot back in a stroke because the chance you hit the hole is very small. Rather, you see where the hole is, and you are going toward the hole by small steps.
 
 Unlike the EBM where we directly target to the log-density, the Diffusion model essentially learns a sampling process. Diffusion model tries to decompose sampling the density into a large number of very small incremental steps.
 
@@ -270,11 +270,11 @@ Unlike the EBM where we directly target to the log-density, the Diffusion model 
 
 The forward process of Diffusion model is gradually adding noise to a clean image until it becomes a Gaussian, using non-equilibrium sampling.
 
-Let $x\_0$ denote the clean image and $x\_t$ denote the image with noise level $t$, from noise level $x\_{t}$ to $x\_{t+\Delta t}$, we have:
-$$x\_{t+\Delta t}=x\_t+\delta e\_t\sqrt{\Delta t}-\frac{\delta^2\Delta t}{2}\nabla\_x\log p\_t(x).$$
-Let us look into the equation, where $\delta e\_t\sqrt{\Delta t}$ is the random step of adding perturbation, and $\frac{\delta^2\Delta t}{2}\nabla\_x\log p\_t(x)$ is the deterministic step of gradient descent. Recall the Fokker-Planck effect introduced in the Langevin Dynamics. The only difference lies in the deterministic step---in contrast to gradient ascent in the updating of Langevin Dynamics, forward updating Diffusion model applies gradient descent. Consequently, the effect of gradient descent is opposite to that of gradient ascent---in the gradient descent step, as the model tends to update according to the gradient, the particles are *stretched* away from areas with more particles, thus making the density peaks more smooth. Hence, we can see that both the deterministic step and the random step lead to dispersion on the density. 
+Let $x_0$ denote the clean image and $x_t$ denote the image with noise level $t$, from noise level $x_{t}$ to $x_{t+\Delta t}$, we have:
+$$x_{t+\Delta t}=x_t+\delta e_t\sqrt{\Delta t}-\frac{\delta^2\Delta t}{2}\nabla_x\log p_t(x).$$
+Let us look into the equation, where $\delta e_t\sqrt{\Delta t}$ is the random step of adding perturbation, and $\frac{\delta^2\Delta t}{2}\nabla_x\log p_t(x)$ is the deterministic step of gradient descent. Recall the Fokker-Planck effect introduced in the Langevin Dynamics. The only difference lies in the deterministic step---in contrast to gradient ascent in the updating of Langevin Dynamics, forward updating Diffusion model applies gradient descent. Consequently, the effect of gradient descent is opposite to that of gradient ascent---in the gradient descent step, as the model tends to update according to the gradient, the particles are *stretched* away from areas with more particles, thus making the density peaks more smooth. Hence, we can see that both the deterministic step and the random step lead to dispersion on the density. 
 
-We can also look into the Taylor expansion of the testing function $\mathbb{E}\big\[h(x\_{t+\Delta t})\big\]$. Expanding $\frac{\delta^2\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $\delta e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have the same sign, instead of cancelling the effect of each other, they actually have the same effect. This is the non-equilibrium sampling process.
+We can also look into the Taylor expansion of the testing function $\mathbb{E}\big[h(x_{t+\Delta t})\big]$. Expanding $\frac{\delta^2\Delta t}{2}\nabla_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $\delta e_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have the same sign, instead of cancelling the effect of each other, they actually have the same effect. This is the non-equilibrium sampling process.
 
 <p align="center">
 <img src="figures/nonequilibrium_forward.gif" alt="nonequilibrium forward" width="67%">
@@ -286,16 +286,16 @@ We can also look into the Taylor expansion of the testing function $\mathbb{E}\b
 
 After changing the clean image into white noise, now we are trying to walk back. 
 
-We only need to reverse the deterministic step, from noise level $x\_{t+\Delta\_t}$ to $x\_t$, we have:
-$$\tilde{x}\_t=x\_{t+\Delta t}+\frac{\delta^2\sqrt{\Delta t}}{2}\nabla\_x\log p\_{t+\Delta t}(x\_{t+\Delta t}).$$
+We only need to reverse the deterministic step, from noise level $x_{t+\Delta_t}$ to $x_t$, we have:
+$$\tilde{x}\_t=x_{t+\Delta t}+\frac{\delta^2\sqrt{\Delta t}}{2}\nabla_x\log p_{t+\Delta t}(x_{t+\Delta t}).$$
 
 ### Ordinary & Stochastic Differential Equation 
 
-Similar to Langevin Dynamics, we have two variants of reverse updating when the time steps become very small, (*i.e.*, $\Delta t\rightarrow 0$).
+Similar to Langevin Dynamics, we have two variants of reverse updating when the time steps become very small, (*i.e.*, $\Delta t\to 0$).
 
 If we only consider the deterministic step, we have Ordinary Differential Equation (ODE):
-$$dx\_t=-\frac{\delta^2}{2}\nabla\_x\log p\_t(x\_t)dt,$$
-where $p\_t(x\_t)$ is the image density in noise level $t$.
+$$dx_t=-\frac{\delta^2}{2}\nabla_x\log p_t(x_t)dt,$$
+where $p_t(x_t)$ is the image density in noise level $t$.
 
 <p align="center">
 <img src="figures/nonequilibrium_reverse_ODE.gif" alt="nonequilibrium reverse ODE" width="67%">
@@ -304,8 +304,8 @@ where $p\_t(x\_t)$ is the image density in noise level $t$.
 </p>
 
 If we consider the random step, we have Stochastic Differential Equation (SDE):
-$$dx\_t=-\delta^2\nabla\_x\log p\_t(x\_t)+\delta d\tilde{B}\_t,$$
-where $d\tilde{B}\_t=d\tilde{e}\_t\sqrt{\Delta t}=\frac{\tilde{e}dt}{2\sqrt{\Delta t}}$. The SDE formulation can be interpreted as going two reverse steps from $p\_{t+\Delta t}$ to $p\_{t-\Delta t}$, then going one forward step from $p\_{t-\Delta t}$ to $p\_t$. This provides a merit that SDE is more appliable if we cannot estimate $p\_t$ accurately.
+$$dx_t=-\delta^2\nabla_x\log p_t(x_t)+\delta d\tilde{B}\_t,$$
+where $d\tilde{B}\_t=d\tilde{e}\_t\sqrt{\Delta t}=\frac{\tilde{e}dt}{2\sqrt{\Delta t}}$. The SDE formulation can be interpreted as going two reverse steps from $p_{t+\Delta t}$ to $p_{t-\Delta t}$, then going one forward step from $p_{t-\Delta t}$ to $p_t$. This provides a merit that SDE is more appliable if we cannot estimate $p_t$ accurately.
 
 <p align="center">
 <img src="figures/nonequilibrium_reverse_SDE.gif" alt="nonequilibrium reverse SDE" width="67%">
@@ -315,21 +315,25 @@ where $d\tilde{B}\_t=d\tilde{e}\_t\sqrt{\Delta t}=\frac{\tilde{e}dt}{2\sqrt{\Del
 
 ### Vincent Identity
 
-Here we go into the core problem of learning a Duffusion model: how do we estimate the score $\nabla\_x\log p\_t(x\_t)$? Vincent Identity provides us with a very powerful tool that $\nabla\_x\log p\_t(x\_t)=\mathbb{E}\_{p(x\_0|x\_t)}\big\[-(x\_t-x\_0)/\sigma\_t^2\big\]$.
+Here we go into the core problem of learning a Duffusion model: how do we estimate the score $\nabla_x\log p_t(x_t)$? Vincent Identity provides us with a very powerful tool that $\nabla_x\log p_t(x_t)=\mathbb{E}\_{p(x_0|x_t)}\big[-(x_t-x_0)/\sigma_t^2\big]$.
 
-From the clean image $x\_0\sim p\_0$, the Diffusion model gradually adds noise in the forward process to $x\_t\sim p\_t$, then we have:
-$$x\_t=x\_0+\mathcal{N}(0,\sigma^2t\mathcal{I}),$$
+From the clean image $x_0\sim p_0$, the Diffusion model gradually adds noise in the forward process to $x_t\sim p_t$, then we have:
+$$x_t=x_0+\mathcal{N}(0,\sigma^2t\mathcal{I}),$$
 where $\sigma^2t$ is the noise accumulated in the $t$ levels. Then we derive the Vincent Identity:
-$$\begin{aligned} \nabla\_x\log p\_t(x\_t)&=\frac{1}{p\_t(x\_t)}\nabla\_x p\_t(x\_t)\\ \newline &=\frac{1}{p\_t(x\_t)}\int\nabla\_{x\_t}p(x\_0,x\_t)dx\_0\\ \newline &=\frac{1}{p\_t(x\_t)}\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)p(x\_0,x\_t)dx\_0\\ \newline &=\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)\frac{p(x\_0,x\_t)}{p\_t(x\_t)}dx\_0\\ \newline &=\int\big(\nabla\_{x\_t}\log p(x\_0,x\_t)\big)p(x\_0|x\_t)dx\_0\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\Big\[\nabla\_{x\_t}\big(\log p(x\_0)p(x\_t|x\_0)\big)\Big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\Big\[\nabla\_{x\_t}\big(\log p(x\_0)+\log p(x\_t|x\_0)\big)\Big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\big\[\nabla\_{x\_t}\log p(x\_t|x\_0)\big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\big\[\nabla\_{x\_t}(x\_t-x\_0)^2/2\sigma\_t^2\big\]\\ \newline &=\mathbb{E}\_{p(x\_0|x\_t)}\big\[-(x\_t-x\_0)/\sigma\_t^2\big\]. \end{aligned}$$
-From line 1 to line 2 we integrate over $x\_0$ to obtain the joint distribution $p(x\_0,x\_t)$. Then we employ a common trick for taking a derivative of a density in the integral that puts $\log$ into the derivative operator in line 3. From line 4 to line 5 we put $\frac{1}{p(x\_0)}$ into the integral and obtain the conditional density. From line 6 we rewrite the integral into a expectation form. Line 7 shows the merit of adding the $\log$ term, we expand the factorized joint distribution into a simple addition and calculate their derivatives respectively. 
+
+$$
+\begin{aligned} \nabla_x\log p_t(x_t)&=\frac{1}{p_t(x_t)}\nabla_x p_t(x\_t)\\\ &=\frac{1}{p_t(x_t)}\int\nabla_{x_t}p(x_0,x_t)dx_0\\\ &=\frac{1}{p_t(x_t)}\int\big(\nabla_{x_t}\log p(x_0,x_t)\big)p(x_0,x_t)dx_0\\\ &=\int\big(\nabla_{x_t}\log p(x_0,x_t)\big)\frac{p(x_0,x_t)}{p_t(x_t)}dx_0\\\ &=\int\big(\nabla_{x_t}\log p(x_0,x_t)\big)p(x_0|x_t)dx_0\\\ &=\mathbb{E}\_{p(x_0|x_t)}\Big[\nabla_{x_t}\big(\log p(x_0)p(x_t|x_0)\big)\Big]\\\ &=\mathbb{E}\_{p(x_0|x_t)}\Big[\nabla_{x_t}\big(\log p(x_0)+\log p(x_t|x_0)\big)\Big]\\\ &=\mathbb{E}\_{p(x_0|x_t)}\big[\nabla_{x_t}\log p(x_t|x_0)\big]\\\ &=\mathbb{E}\_{p(x_0|x_t)}\big[\nabla_{x_t}(x_t-x_0)^2/2\sigma_t^2\big]\\\ &=\mathbb{E}\_{p(x_0|x_t)}\big[-(x_t-x_0)/\sigma_t^2\big]. \end{aligned}
+$$
+
+From line 1 to line 2 we integrate over $x_0$ to obtain the joint distribution $p(x_0,x_t)$. Then we employ a common trick for taking a derivative of a density in the integral that puts $\log$ into the derivative operator in line 3. From line 4 to line 5 we put $\frac{1}{p(x_0)}$ into the integral and obtain the conditional density. From line 6 we rewrite the integral into a expectation form. Line 7 shows the merit of adding the $\log$ term, we expand the factorized joint distribution into a simple addition and calculate their derivatives respectively. 
 
 ### Score Matching/Denoising Auto-Encoder
 
 On the basis of the Vincent Identity, we have:
-$$\mathbb{E}\big\[p(x\_0|x\_t)\big\]=x\_t+\sigma^2t\nabla\_x\log p\_t(x\_t),$$
-where $x\_0$ is the clean image and $\sigma^2t$ is the accumulated noise. Hence, we can estimate the score in a regression fashion where the objective is to predict $x\_0$ given $x\_t$, formulated as:
-$$\min\limits\_{\theta}\Big|x\_0-\big(x\_t+\sigma^2ts\_\theta(x\_t,t)\big)\Big|^2,$$
-and this gives us a Denoising Auto-Encoder. We can parametrize this in a U-Net. A U-Net encodes the noisy version of the image and decodes back to the clean version of the image, with the encoder and decoder sharing parameters. We can learn a single U-Net for all levels of noise by taking noisy level $x\_t$ and $t$ as the input variables of the model. $t$ can be embedded as expressive vectors $\sin\omega t+\cos\omega t$, which is similar to the positional encoding in the Transformer model. 
+$$\mathbb{E}\big[p(x_0|x_t)\big]=x_t+\sigma^2t\nabla_x\log p_t(x_t),$$
+where $x_0$ is the clean image and $\sigma^2t$ is the accumulated noise. Hence, we can estimate the score in a regression fashion where the objective is to predict $x_0$ given $x_t$, formulated as:
+$$\min\limits_{\theta}\Big|x_0-\big(x_t+\sigma^2ts_\theta(x_t,t)\big)\Big|^2,$$
+and this gives us a Denoising Auto-Encoder. We can parametrize this in a U-Net. A U-Net encodes the noisy version of the image and decodes back to the clean version of the image, with the encoder and decoder sharing parameters. We can learn a single U-Net for all levels of noise by taking noisy level $x_t$ and $t$ as the input variables of the model. $t$ can be embedded as expressive vectors $\sin\omega t+\cos\omega t$, which is similar to the positional encoding in the Transformer model. 
 
 <p align="center">
 <img src="figures/U-Net.jpg" alt="unet" width="67%">
@@ -338,42 +342,54 @@ and this gives us a Denoising Auto-Encoder. We can parametrize this in a U-Net. 
 </p>
 
 Under this implementation, we take relatively big steps to estimate noise:
-$$\Big|\varepsilon-\big(x\_t+\sigma^2ts\_\theta(x\_0+\varepsilon,t)\big)\Big|^2,$$
+$$\Big|\varepsilon-\big(x_t+\sigma^2ts_\theta(x_0+\varepsilon,t)\big)\Big|^2,$$
 where $\varepsilon$ is the estimated noise level step size, and we then take relatively small steps to denoise:
-$$\tilde{x}\_{t-\Delta t}=x\_t+\frac{\sigma^2\Delta t}{2}s\_\theta(x\_t,t).$$
+$$\tilde{x}\_{t-\Delta t}=x_t+\frac{\sigma^2\Delta t}{2}s_\theta(x_t,t).$$
 
 ### Another Formulation: Variational
 
-We can alternativelly reform the score-based methods into a variational way. The forward process from $x\_{t-\Delta t}$ to $x\_t$ is quite similar to score-based methods:
-$$x\_t=x\_{t-\Delta t}+\mathcal{N}(0,\sigma^2\Delta t\mathcal{I}).$$
-But in the reverse process for estimating $x\_0$, variational methods focus on the conditional distribution, which is distinct from the score-based methods focusing on marginal distributions:
-$$\begin{aligned} p(x\_{t-\Delta t}|x\_t)&\propto p(x\_{t-\Delta t})q(x\_t|x\_{t-\Delta t})\\ \newline \log p(x\_{t-\Delta t}|x\_t)&=\log p(x\_{t-\Delta t})-\frac{1}{2\sigma^2\Delta t}|x\_{t-\Delta t}-x\_t|^2 \end{aligned}$$
-The derivation starts from applying the Bayes rule to obtain $p(x\_{t-\Delta t}|x\_t)$. As $q(x\_t|x\_{t-\Delta t})$ is Gaussian noise, we can approximate the conditional density to a Gaussian density *iff* $\Delta t$ is very small, *i.e.*, $\Delta t\rightarrow 0$. Applying first-order Taylor expansion, we have:
-$$\begin{aligned} \log p(x\_{t-\Delta t}|x\_t)&\approx\log p\_(x\_t)+\nabla\_x\log p(x\_t)(x\_{t-\Delta t}-x\_t)-\frac{1}{2\sigma^2\Delta t}|x\_{t-\Delta t}-x\_t|^2\\ \newline &=-\frac{1}{2\sigma^2\Delta t}\Big|x\_{t-\Delta t}-\big(x\_t+\sigma^2\Delta t\nabla\_x\log p(x\_t)\big)\Big|^2+\text{const}\\ \newline &\approx\mathcal{N}\big(x\_t+\sigma^2\Delta t\nabla\_x\log p(x\_t),\sigma^2\Delta t\mathcal{I}\big). \end{aligned}$$
+We can alternativelly reform the score-based methods into a variational way. The forward process from $x_{t-\Delta t}$ to $x_t$ is quite similar to score-based methods:
+$$x_t=x_{t-\Delta t}+\mathcal{N}(0,\sigma^2\Delta t\mathcal{I}).$$
+But in the reverse process for estimating $x_0$, variational methods focus on the conditional distribution, which is distinct from the score-based methods focusing on marginal distributions:
+
+$$
+\begin{aligned} p(x_{t-\Delta t}|x_t)&\propto p(x_{t-\Delta t})q(x_t|x_{t-\Delta t})\\\ \log p(x_{t-\Delta t}|x_t)&=\log p(x_{t-\Delta t})-\frac{1}{2\sigma^2\Delta t}|x_{t-\Delta t}-x_t|^2 \end{aligned}
+$$
+
+The derivation starts from applying the Bayes rule to obtain $p(x_{t-\Delta t}|x_t)$. As $q(x_t|x_{t-\Delta t})$ is Gaussian noise, we can approximate the conditional density to a Gaussian density *iff* $\Delta t$ is very small, *i.e.*, $\Delta t\to 0$. Applying first-order Taylor expansion, we have:
+
+$$
+\begin{aligned} \log p(x_{t-\Delta t}|x_t)&\approx\log p_(x_t)+\nabla_x\log p(x_t)(x_{t-\Delta t}-x_t)-\frac{1}{2\sigma^2\Delta t}|x_{t-\Delta t}-x_t|^2\\\ &=-\frac{1}{2\sigma^2\Delta t}\Big|x_{t-\Delta t}-\big(x_t+\sigma^2\Delta t\nabla_x\log p(x_t)\big)\Big|^2+\text{const}\\\ &\approx\mathcal{N}\big(x_t+\sigma^2\Delta t\nabla_x\log p(x_t),\sigma^2\Delta t\mathcal{I}\big). \end{aligned}
+$$
+
 Hence, this variational formulation transforms the extremely hard conditional distribution estimation to a very simple Gaussian distribution.
 
 Recall our gold standard, MLE---as we have obtained the conditional distribution, naturally we can formulate the variational form in KL-Divergence:
-$$D\_{KL}\Big(p(x\_0)\prod\_{t}q(x\_t|x\_{t-1})\Big\|\prod\_tp\_\theta(x\_{t-\Delta t}|x\_t)\Big),$$
-where the left distribution is the complete data distribution of the entire forward process; specifically, $p(x\_0)$ is the observed data and $\prod\_{t}q(x\_t|x\_{t-1})$ is the joint distribution of latent variables; the right distribution is the model density. 
+$$D_{KL}\Big(p(x_0)\prod_{t}q(x_t|x_{t-1})\Big\|\prod_tp_\theta(x_{t-\Delta t}|x_t)\Big),$$
+where the left distribution is the complete data distribution of the entire forward process; specifically, $p(x_0)$ is the observed data and $\prod_{t}q(x_t|x_{t-1})$ is the joint distribution of latent variables; the right distribution is the model density. 
 
 In the reverse process, we can execute noise reduction by decomposing the KL-Divergence:
-$$\sum\_t D\_{KL}\big(q(x\_{t-\Delta t}|x\_t,x\_0)\big\|p\_\theta(x\_{t-\Delta t}|x\_t)\big),$$
+$$\sum_t D_{KL}\big(q(x_{t-\Delta t}|x_t,x_0)\big\|p_\theta(x_{t-\Delta t}|x_t)\big),$$
 since both distributions are Guassian:
-$$q(x\_{t-\Delta t}|x\_t,x\_0)\sim\mathcal{N}\big(\mu(x\_t,x\_0),0\big),p\_\theta(x\_{t-\Delta t}|x\_t)\sim\mathcal{N}\big(M\_\theta(x\_t),\sigma^2\Delta t\mathcal{I}\big),$$
-where $M\_\theta$ is a U-Net model with parameters $\theta$. We can rewrite the KL-Divergence in closed-form as:
-$$\min\limits\_\theta\big|M\_\theta(x\_t)-\mu(x\_t,x\_0)\big|^2/\sigma^2\Delta t,$$
-where the noise estimation can be reparametrized as $|\varepsilon-\varepsilon\_0(x\_t,t)|^2$.
+$$q(x_{t-\Delta t}|x_t,x_0)\sim\mathcal{N}\big(\mu(x_t,x_0),0\big),p_\theta(x_{t-\Delta t}|x_t)\sim\mathcal{N}\big(M_\theta(x_t),\sigma^2\Delta t\mathcal{I}\big),$$
+where $M_\theta$ is a U-Net model with parameters $\theta$. We can rewrite the KL-Divergence in closed-form as:
+$$\min\limits_\theta\big|M_\theta(x_t)-\mu(x_t,x_0)\big|^2/\sigma^2\Delta t,$$
+where the noise estimation can be reparametrized as $|\varepsilon-\varepsilon_0(x_t,t)|^2$.
 
 
 ### Relations with Other Generative Models
 
-Diffusion model can be viewed as the Auto-regressive model in the time domain, which reverse the time, going from white noise $x\_t$ to the clear image $x\_0$.
+Diffusion model can be viewed as the Auto-regressive model in the time domain, which reverse the time, going from white noise $x_t$ to the clear image $x_0$.
 
-Diffusion model can be viewed as the Flow-based model. Flow-based model starts from white noise $Z\sim\mathcal{N}(\mathcal{0},\mathcal{I}\_D)$ ($D$ is the dimension of data) and use a sequence of transformations to generate $x=g\_1(g\_2(\cdots g\_t(z)))$. Each trasformation $g\_i$ has to be in very stricted form and invertible. Hence, the Deffusion model can be viewed as a more free-formed Flow-based model without restrictions and invertibility.
+Diffusion model can be viewed as the Flow-based model. Flow-based model starts from white noise $Z\sim\mathcal{N}(\mathcal{0},\mathcal{I}_D)$ ($D$ is the dimension of data) and use a sequence of transformations to generate $x=g_1(g_2(\cdots g_t(z)))$. Each trasformation $g_i$ has to be in very stricted form and invertible. Hence, the Deffusion model can be viewed as a more free-formed Flow-based model without restrictions and invertibility.
 
 Diffusion model can be viewed as a refined version of Variational Auto-Encoder (VAE). VAE starts from white noise $Z\sim\mathcal{N}(\mathcal{0},\mathcal{I}\_d), d \ll D$ and generates $x=g(z)+\varepsilon, \varepsilon\sim\mathcal{N}(0,\sigma^2\mathcal{I}\_D)$. The KL-Divergence for learning VAE by MLE is:
-$$\begin{aligned} D\_{KL}&\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)\big)\\ \newline &=D\_{KL}\big(p\_{data}(x)\big\|p\_\theta(x)\big)+D\_{KL}\big(q\_\phi(z|x)\big\|p\_\theta(x|z)\big). \end{aligned}$$
-VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to Diffusion model that reaches the target in a thousand strokes, VAE is trying to send the golf into the hole using only one stroke. Hence, this can be very inaccurate.
+
+$$
+\begin{aligned} D_{KL}&\big(p_{data}(x)q_\phi(z|x)\big\|p(z)p_\theta(x|z)\big)\\\ &=D_{KL}\big(p_{data}(x)\big\|p_\theta(x)\big)+D_{KL}\big(q_\phi(z|x)\big\|p_\theta(x|z)\big). \end{aligned}
+$$
+
+VAE estimates $x_0$ in one-shot. Analogous to the golf example, in contrast to Diffusion model that reaches the target in a thousand strokes, VAE is trying to send the golf into the hole using only one stroke. Hence, this can be very inaccurate.
 
 <p align="center">
 <img src="figures/relation.jpg" alt="relation" width="75%">
