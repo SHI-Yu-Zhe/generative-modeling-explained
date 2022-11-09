@@ -181,7 +181,7 @@ $$
 \begin{aligned}C(\theta)&=D_{KL}(p_{data}(x)\parallel p_\theta(x)) - D_{KL}(p_{\theta_t}(x)\parallel p_\theta(x))\\\ &=\mathbb{E}\_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big]-\mathbb{E}\_{p_{\theta_t}}\big[\log p_{\theta_t}(x)\big]+\mathbb{E}\_{p_{\theta_t}}\big[\log p_\theta(x)\big],\end{aligned}
 $$
 
-and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]$ and $\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_\theta(x)\big\]$ is cancelled by each other. This provides an important merit that $L'(\theta\_t)=C'(\theta\_t)$, making the computation much more tractable.
+and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big]$ and $\mathbb{E}\_{p_{\theta_t}}\big[\log p_\theta(x)\big]$ is cancelled by each other. This provides an important merit that $L'(\theta\_t)=C'(\theta\_t)$, making the computation much more tractable.
 
 <p align="center">
 <img src="figures/contrastive_divergence.gif" alt="contrastive divergence" width="67%">
