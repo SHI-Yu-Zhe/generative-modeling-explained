@@ -203,7 +203,7 @@ If we treat the current model $p_{\theta\_t}$ as an actor generating synthesized
 
 Noise Contrastive Estimation (NCE) introduces a reference distribution $q(x)$ into the formulation of $p_\theta(x)$:
 $$p_\theta(x)=\frac{1}{Z(\theta)}\exp\big(f_\theta(x)\big)q(x),$$
-where $q(x)$ serves as a more informative density (*e.g.*, white noise $\mathcal{N}(0,\mathcal{I})$) than the uniform density in the original formulation of EBM.
+where $q(x)$ serves as a more informative density, *e.g.*, white noise $\mathcal{N}(0,\mathcal{I})$, than the uniform density in the original formulation of EBM.
 
 To learn the model, a more practical way is to view the problem from an adversarial perspective. If we draw $n$ true examples from the model $x_1,\dots,x_i,\dots,x_n\sim p_\theta$ that are labelled with $y_i=1$, and draw $n$ faked examples from the noise $\tilde{x}\_1,\dots,\tilde{x}\_i,\dots,\tilde{x}\_n\sim q$ that are labelled with $y_i=0$, then we can calculate the posterior distribution of the real examples given random $x$:
 $$p(y=1|x)=\frac{\frac{1}{2}p_\theta(x)}{\frac{1}{2}p_\theta(x)+\frac{1}{2}q(x)},$$
