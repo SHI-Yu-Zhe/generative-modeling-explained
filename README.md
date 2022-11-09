@@ -22,7 +22,7 @@ The tutorial connects different families of generative models from multiple pers
 Dr. Wu introduces a smooth analogy to the golf for understanding the relations between the generative models. In this perspective, the model expressitivity, the sampling process, and the data modality, are analogous to the sum of balls, the number of strokes, and the number of holes, respectively---more balls means the possibility to cover more holes, and more strokes means sending a ball to a hole more with more patience. The readers may employ this analogy to understand the pros and cons of different generative models. Also see [the relation between generative models from the perspective of Diffusion model](#relations-with-other-generative-models).
 
 <p align="center">
-<img src="figures/golf.jpg" alt="golf" width=600>
+<img src="figures/golf.jpg" alt="golf" style="width:67%">
   <br>
   <b>A visulization of the golf analogy</b>
 </p>
@@ -44,11 +44,15 @@ This tutorial entry is composed by Yu-Zhe Shi under the supervision of Dr. Ying 
 Consider a clot in the 2-D space, with n example data points. **The Probability Density tells you how the points are distributed.** As the number of data points can become extremely large ($n\to\infty$), we have an almost continuous clot demonstrating the data. 
 
 <p align="center">
+<img src="figures/overview.gif" alt="probdens" style="width:67%">
+  <br>
+  <b>A visual demonstration of probabilistic density</b>
+</p>
+<!-- <p align="center">
 <img src="figures/probdens.jpg" alt="probdens" width=600>
   <br>
   <b>A visual demonstration of probabilistic density</b>
-<!--<figcaption style="text-align:center"><b>A visual demonstration of probabilistic density</b></figcaption>-->
-</p>
+</p> -->
 
 To Analyze the continuous density, we can discretize spaces into $\Delta x\rightarrow 0$ and $\Delta y\rightarrow 0$.
 
@@ -120,20 +124,18 @@ A KL-Divergence's view of MLE is treating the two distributions as the groundtru
 $$\begin{aligned}D\_{KL}(p\_{data}\| p\_\theta)&=\mathbb{E}\_{p\_{data}}\big\[\log p\_{data}(x)\big\]-\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]\\ \newline &=-\text{Entropy}(p_{data})-L(\theta).\end{aligned}$$ 
 Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Divergence between $p_{data}$ and $p\_{\theta}$. This KL-Divergence view does provide us with some insights about density estimation---the model varying $\theta$ is lying on a manifold (so-called information geometry picture) and the data density is a point that may not belong to the manifold. But we are projecting the data density point to the model manifold and MLE provides the best approximation to the data density.
 
-<p align="center">
+<!-- <p align="center">
 <img src="figures/kldiv.jpg" alt="kldiv" width=200>
   <br>
   <b>Projecting data to the model manifold</b>
-<!--<figcaption align = "center"><b>Projecting data to the model manifold</b></figcaption>-->
-</p>
+</p> -->
 
 Since we are calculating the expectation over $p\_{data}$, we cannot miss any mode of the data, otherwise we get a rather big KL-Divergence. This is the *mode covering* behavior of generative models. This raises a core problem of generative modeling---if your model is not expressive enough, you end up with either diffused or dispersed densities. In the remainder of this tutorial, we are going over different models trying to resolve the problem.
 
 <p align="center">
-<img src="figures/modecovering.jpg" alt="modecovering" width=200>
+<img src="figures/mode_covering.gif" alt="modecovering" style="width:50%">
   <br>
-  <b>The model covering behavior</b>
-<!--<figcaption align = "center"><b>The model covering behavior</b></figcaption>-->
+  <b>The mode covering behavior</b>
 </p>
 
 *[Back to Top](#generative-modeling-explained)
@@ -169,9 +171,21 @@ Following the KL-Divergence perspective, we can also interpret the Monte-Carlo S
 $$\begin{aligned}C(\theta)&=D\_{KL}(p\_{data}(x)\parallel p\_\theta(x)) - D\_{KL}(p\_{\theta\_t}(x)\parallel p\_\theta(x))\\ \newline &=\mathbb{E}\_{p\_{data}}\big\[\log p\_{data}(x)\big\]-\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]-\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_{\theta\_t}(x)\big\]+\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_\theta(x)\big\],\end{aligned}$$
 and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]$ and $\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_\theta(x)\big\]$ is cancelled by each other. This provides an important merit that $L'(\theta\_t)=C'(\theta\_t)$, making the computation much more tractable.
 
+<p align="center">
+<img src="figures/contrastive_divergence.gif" alt="contrastive divergence" style="width:50%">
+  <br>
+  <b>A visual demonstration of contrastive divergence</b>
+</p>
+
 ### Another Interpretation: Self-Adversarial Training
 
 If we treat the current model $p\_{\theta\_t}$ as an actor generating synthesized examples, and the learned model $p\_{\theta}$ as a critic---the current model is criticized to get closer to the real data density and away from current model density---we are obtaining an adversarial interpretation of CD. This reflects the idea of W-GAN. 
+
+<p align="center">
+<img src="figures/mode_chasing.gif" alt="modechasing" style="width:50%">
+  <br>
+  <b>The mode chasing behavior in W-GAN</b>
+</p>
 
 ### Another Interpretation: Noise Contrastive Estimation
 
@@ -199,13 +213,6 @@ We discretize the time axis and each $\Delta t$ is an iteration step. The single
 $$x\_{t+\Delta t}=x\_t+\frac{\Delta t}{2}\nabla\_x\log\pi(x)+e\_t\sqrt{\Delta t},$$
 where $\nabla\_x\log\pi(x)$ is the gradient of the target density for executing the gradient ascent, which is called *score*. The term $e\_t$ is a random variable at each step where $\mathbb{E}\[e\_t\]=0$ and $\text{Var}\[e\_t\]=\mathcal{I}$. The scalar $\sqrt{\Delta t}$ serves to normalize the perturbation. Langevin Dynamics is a general process to sample from arbitrary density.
 
-<p align="center">
-<img src="figures/chain.jpg" alt="chain" width=500>
-  <br>
-  <b>A visualization of the Langevin Dynamics</b>
-<!--<figcaption align = "center"><b>A visualization of the Langevin Dynamics</b></figcaption>-->
-</p>
-
 ### Stochastic Differential Equation
 
 Consider the time step becomes very small, *i.e.*, $\Delta t\rightarrow 0$---the updating equation becomes a Stochastic Differential Equation (SDE):
@@ -222,10 +229,9 @@ How does this come? Let us look back into the updating equation of Langevin Dyna
 
 
 <p align="center">
-<img src="figures/langevin.jpg" alt="langevin" width=200>
+<img src="figures/equilibrium.gif" alt="langevin" style="width:50%">
   <br>
-  <b>Explaining Langevin Dynamics with (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b>
-<!--<figcaption align = "center"><b>Explaining Langevin Dynamics with (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b></figcaption>-->
+  <b>Explaining Langevin Dynamics with equilibrium sampling: (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b>
 </p>
 
 To analyze the phenomenon mathematically, we may look into the Taylor expansion of the testing function $\mathbb{E}\big\[h(x\_{t+\Delta t})\big\]$. Expanding $\frac{\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have opposite signs, they cancelled the effect of each other. This is identified as the Fokker-Planck effect.
@@ -256,6 +262,12 @@ Let us look into the equation, where $\delta e\_t\sqrt{\Delta t}$ is the random 
 
 We can also look into the Taylor expansion of the testing function $\mathbb{E}\big\[h(x\_{t+\Delta t})\big\]$. Expanding $\frac{\delta^2\Delta t}{2}\nabla\_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $\delta e\_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have the same sign, instead of cancelling the effect of each other, they actually have the same effect. This is the non-equilibrium sampling process.
 
+<p align="center">
+<img src="figures/nonequilibrium_forward.gif" alt="nonequilibrium forward" style="width:50%">
+  <br>
+  <b>A visual demonstration of the forward time in non-equilibrium sampling</b>
+</p>
+
 ### Reverse: From Noise Back to Image
 
 After changing the clean image into white noise, now we are trying to walk back. 
@@ -267,14 +279,25 @@ $$\tilde{x}\_t=x\_{t+\Delta t}+\frac{\delta^2\sqrt{\Delta t}}{2}\nabla\_x\log p\
 
 Similar to Langevin Dynamics, we have two variants of reverse updating when the time steps become very small, (*i.e.*, $\Delta t\rightarrow 0$).
 
-
 If we only consider the deterministic step, we have Ordinary Differential Equation (ODE):
 $$dx\_t=-\frac{\delta^2}{2}\nabla\_x\log p\_t(x\_t)dt,$$
 where $p\_t(x\_t)$ is the image density in noise level $t$.
 
+<p align="center">
+<img src="figures/nonequilibrium_reverse_ODE.gif" alt="nonequilibrium reverse ODE" style="width:50%">
+  <br>
+  <b>A visual demonstration of the reverse time in non-equilibrium sampling (ODE)</b>
+</p>
+
 If we consider the random step, we have Stochastic Differential Equation (SDE):
 $$dx\_t=-\delta^2\nabla\_x\log p\_t(x\_t)+\delta d\tilde{B}\_t,$$
 where $d\tilde{B}\_t=d\tilde{e}\_t\sqrt{\Delta t}=\frac{\tilde{e}dt}{2\sqrt{\Delta t}}$. The SDE formulation can be interpreted as going two reverse steps from $p\_{t+\Delta t}$ to $p\_{t-\Delta t}$, then going one forward step from $p\_{t-\Delta t}$ to $p\_t$. This provides a merit that SDE is more appliable if we cannot estimate $p\_t$ accurately.
+
+<p align="center">
+<img src="figures/nonequilibrium_reverse_SDE.gif" alt="nonequilibrium reverse SDE" style="width:50%">
+  <br>
+  <b>A visual demonstration of the reverse time in non-equilibrium sampling (SDE)</b>
+</p>
 
 ### Vincent Identity
 
@@ -295,10 +318,9 @@ $$\min\limits\_{\theta}\Big|x\_0-\big(x\_t+\sigma^2ts\_\theta(x\_t,t)\big)\Big|^
 and this gives us a Denoising Auto-Encoder. We can parametrize this in a U-Net. A U-Net encodes the noisy version of the image and decodes back to the clean version of the image, with the encoder and decoder sharing parameters. We can learn a single U-Net for all levels of noise by taking noisy level $x\_t$ and $t$ as the input variables of the model. $t$ can be embedded as expressive vectors $\sin\omega t+\cos\omega t$, which is similar to the positional encoding in the Transformer model. 
 
 <p align="center">
-<img src="figures/unet.jpg" alt="unet" width=200>
+<img src="figures/U-Net.jpg" alt="unet" style="width:50%">
   <br>
   <b>U-Net: encoding the noisy version of the image to decode the clean version of the image</b>
-<!--<figcaption align = "center"><b>U-Net: encoding the noisy version of the image to decode the clean version of the image</b></figcaption>-->
 </p>
 
 Under this implementation, we take relatively big steps to estimate noise:
@@ -340,9 +362,33 @@ $$\begin{aligned} D\_{KL}&\big(p\_{data}(x)q\_\phi(z|x)\big\|p(z)p\_\theta(x|z)\
 VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to Diffusion model that reaches the target in a thousand strokes, VAE is trying to send the golf into the hole using only one stroke. Hence, this can be very inaccurate.
 
 <p align="center">
-<img src="figures/relation.jpg" alt="relation" width=600>
+<img src="figures/relation.jpg" alt="relation" style="width:75%">
   <br>
   <b>A visualization of the relation between different generative models from the perspective of Diffusion model</b>
+</p>
+
+The following animations show the two pairs of counterparts that needs distinction.
+
+<p align="center">
+<img src="figures/mode_covering.gif" alt="covering vs chasing 1" style="width:40%">
+<img src="figures/mode_chasing.gif" alt="covering vs chasing 2" style="width:40%">
+  <br>
+  <b>Mode covering vs. mode chasing</b>
+</p>
+
+<p align="center">
+<img src="figures/contrastive_divergence.gif" alt="cd vs em 1" style="width:40%">
+<img src="figures/em_algorithm.gif" alt="cd vs em 2" style="width:40%">
+  <br>
+  <b>Contrastive divergence vs. EM algorithm</b>
+</p>
+
+<p align="center">
+<img src="figures/equilibrium.gif" alt="eq vs non 1" style="width:30%">
+<img src="figures/nonequilibrium_forward.gif" alt="eq vs non 2" style="width:30%">
+<img src="figures/nonequilibrium_reverse_ODE.gif" alt="eq vs non 3" style="width:30%">
+  <br>
+  <b>Equilibrium sampling vs. non-equilibrium sampling</b>
 </p>
 
 *[Back to Top](#generative-modeling-explained)
