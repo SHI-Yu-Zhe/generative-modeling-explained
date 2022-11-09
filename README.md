@@ -370,19 +370,19 @@ VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to 
 The following animations show the two pairs of counterparts that needs distinction.
 
 <p align="center">
-<img src="figures/mode_covering.gif" alt="covering vs chasing 1" style="width:50%"><img src="figures/mode_chasing.gif" alt="covering vs chasing 2" style="width:50%">
+<img src="figures/mode_covering.gif" alt="covering vs chasing 1" style="width:45%"><img src="figures/mode_chasing.gif" alt="covering vs chasing 2" style="width:45%">
   <br>
   <b>Mode covering vs. mode chasing</b>
 </p>
 
 <p align="center">
-<img src="figures/contrastive_divergence.gif" alt="cd vs em 1" style="width:50%"><img src="figures/em_algorithm.gif" alt="cd vs em 2" style="width:50%">
+<img src="figures/contrastive_divergence.gif" alt="cd vs em 1" style="width:45%"><img src="figures/em_algorithm.gif" alt="cd vs em 2" style="width:45%">
   <br>
   <b>Contrastive divergence vs. EM algorithm</b>
 </p>
 
 <p align="center">
-<img src="figures/equilibrium.gif" alt="eq vs non 1" style="width:33%"><img src="figures/nonequilibrium_forward.gif" alt="eq vs non 2" style="width:33%"><img src="figures/nonequilibrium_reverse_ODE.gif" alt="eq vs non 3" style="width:33%">
+<img src="figures/equilibrium.gif" alt="eq vs non 1" style="width:30%"><img src="figures/nonequilibrium_forward.gif" alt="eq vs non 2" style="width:30%"><img src="figures/nonequilibrium_reverse_ODE.gif" alt="eq vs non 3" style="width:30%">
   <br>
   <b>Equilibrium sampling vs. non-equilibrium sampling</b>
 </p>
