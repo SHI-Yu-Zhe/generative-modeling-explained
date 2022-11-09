@@ -211,6 +211,8 @@ applying the Bayes rule, we obtain:
 $$\log\frac{p(y=1|x)}{p(y=0|x)}=f_\theta(x)+\text{const},$$
 where the left-hand-side defines a discriminator, and $f_\theta(x)$ here is a logit score. Hence, we are essentially learning a binary classifier, which is much more easier than MLE because we do not need to deal with the model density.
 
+*[Back to Top](#generative-modeling-explained)
+
 ## Sampling Process for Learning EBM
 
 > Small steps get us to faraway places. 不積跬步，無以至千里。
@@ -219,11 +221,11 @@ As aforementioned, the core problem of generative modeling is estimating the mod
 
 ### Langevin Dynamics
 
-We cannot sample from the model density all at once. Hence, we use Langevin Dynamics to sample in steps alone the time-axis. Here we denote the target distribution $p\_\theta(x)$ as $\pi(x)$. Starting from a noise distribution, after a few steps of sampling, we hope that $\pi(x)$ can come to the stationary distribution, or the equilibrium distribution. 
+We cannot sample from the model density all at once. Hence, we use Langevin Dynamics to sample in steps alone the time-axis. Here we denote the target distribution $p_\theta(x)$ as $\pi(x)$. Starting from a noise distribution, after a few steps of sampling, we hope that $\pi(x)$ can come to the stationary distribution, or the equilibrium distribution. 
 
 We discretize the time axis and each $\Delta t$ is an iteration step. The single-step updating is:
-$$x\_{t+\Delta t}=x\_t+\frac{\Delta t}{2}\nabla\_x\log\pi(x)+e\_t\sqrt{\Delta t},$$
-where $\nabla\_x\log\pi(x)$ is the gradient of the target density for executing the gradient ascent, which is called *score*. The term $e\_t$ is a random variable at each step where $\mathbb{E}\[e\_t\]=0$ and $\text{Var}\[e\_t\]=\mathcal{I}$. The scalar $\sqrt{\Delta t}$ serves to normalize the perturbation. Langevin Dynamics is a general process to sample from arbitrary density.
+$$x_{t+\Delta t}=x_t+\frac{\Delta t}{2}\nabla_x\log\pi(x)+e_t\sqrt{\Delta t},$$
+where $\nabla_x\log\pi(x)$ is the gradient of the target density for executing the gradient ascent, which is called *score*. The term $e_t$ is a random variable at each step where $\mathbb{E}[e_t]=0$ and $\text{Var}[e_t]=\mathcal{I}$. The scalar $\sqrt{\Delta t}$ serves to normalize the perturbation. Langevin Dynamics is a general process to sample from arbitrary density.
 
 ### Stochastic Differential Equation
 
