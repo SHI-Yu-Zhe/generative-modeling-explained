@@ -166,7 +166,10 @@ $$
 $$
 
 and the derivative of $L(\theta)$ is:
-$$\begin{aligned}L'(\theta)&=\frac{1}{n}\sum\_{i=1}^n\nabla\_\theta f\_\theta(x\_i)-\mathbb{E}\_{p\_\theta}\big\[\nabla\_\theta f\_\theta(x)\big\]\\ \newline &=\mathbb{E}\_{p\_{data}}\big\[\nabla\_\theta f\_\theta(x)\big\]-\mathbb{E}\_{p\_\theta}\big\[\nabla\_\theta f\_\theta(x)\big\].\end{aligned}$$
+
+$$
+\begin{aligned}L'(\theta)&=\frac{1}{n}\sum_{i=1}^n\nabla_\theta f_\theta(x_i)-\mathbb{E}\_{p_\theta}\big[\nabla_\theta f_\theta(x)\big]\\\ &=\mathbb{E}\_{p_{data}}\big[\nabla_\theta f_\theta(x)\big]-\mathbb{E}\_{p_\theta}\big[\nabla_\theta f_\theta(x)\big].\end{aligned}
+$$
 
 However, computing the expectation is extremely hard. We have to use Monte-Carlo Sampling to draw examples from the estimated density. The goal is to match the average of observed examples and the average of synthesized examples. The main problem of learning EBM is that sampling from the model density is non-trivial at all.
 
