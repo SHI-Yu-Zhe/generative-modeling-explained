@@ -157,10 +157,14 @@ $$
 \begin{aligned}\frac{\partial}{\partial\theta}\log Z(\theta)&=\frac{1}{Z(\theta)}\int\exp\big(f_\theta(x)\big)\frac{\partial}{\partial\theta}f_\theta(x)dx\\\ &=\mathbb{E}\_{P_\theta}\Bigg[\frac{\partial}{\partial\theta} f_\theta(x)\Bigg],\end{aligned}
 $$
 
-where we get an important property that $\frac{\partial}{\partial\theta}\log Z(\theta)=\mathbb{E}\_{P\_\theta}\big\[\nabla\_\theta f\_\theta(x)\big\]$. 
+where we get an important property that $\frac{\partial}{\partial\theta}\log Z(\theta)=\mathbb{E}\_{P_\theta}\big[\nabla_\theta f_\theta(x)\big]$. 
 
 Bringing the EBM formulation into the MLE formulation, we have:
-$$\begin{aligned}L(\theta)&=\frac{1}{n}\sum\_{i=1}^n \log p\_\theta(x\_i)\\ \newline &=\frac{1}{n}\sum\_{i=1}^n f\_\theta(x\_i)-\log Z(\theta),\end{aligned}$$
+
+$$
+\begin{aligned}L(\theta)&=\frac{1}{n}\sum_{i=1}^n \log p_\theta(x_i)\\\ &=\frac{1}{n}\sum_{i=1}^n f_\theta(x_i)-\log Z(\theta),\end{aligned}
+$$
+
 and the derivative of $L(\theta)$ is:
 $$\begin{aligned}L'(\theta)&=\frac{1}{n}\sum\_{i=1}^n\nabla\_\theta f\_\theta(x\_i)-\mathbb{E}\_{p\_\theta}\big\[\nabla\_\theta f\_\theta(x)\big\]\\ \newline &=\mathbb{E}\_{p\_{data}}\big\[\nabla\_\theta f\_\theta(x)\big\]-\mathbb{E}\_{p\_\theta}\big\[\nabla\_\theta f\_\theta(x)\big\].\end{aligned}$$
 
