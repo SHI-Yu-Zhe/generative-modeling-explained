@@ -370,9 +370,9 @@ VAE estimates $x\_0$ in one-shot. Analogous to the golf example, in contrast to 
 The following animations show the two pairs of counterparts that needs distinction.
 
 <p align="center">
-  <img src="figures/mode_covering.gif" alt="covering vs chasing 1" style="width:45%">
-  &nbsp;
-  <img src="figures/mode_chasing.gif" alt="covering vs chasing 2" style="width:45%">
+  <img src="figures/mode_covering.gif" alt="covering vs chasing 1" width="45%">
+  &nbsp;&nbsp;
+  <img src="figures/mode_chasing.gif" alt="covering vs chasing 2" width="45%">
   <br>
   <b>Mode covering vs. mode chasing</b>
 </p>
