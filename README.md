@@ -109,7 +109,7 @@ $$L(\theta)=\frac{1}{n}\sum_{i=1}^n \log p_\theta(x_i).$$
 The underlying logic of taking $\log$ of the density is: density is always positive, and $\log$ function maps it to the whole range. As the function is essentially an average over all the data points, we can derive it to an expectation form:
 
 $$
-\begin{align} L(\theta)&=\frac{1}{n}\sum_{i=1}^n \log p_\theta(x_i)\\\ &=\mathbb{E}\_{p\_{data}}\big[\log p_\theta(x)\big].\end{align}
+\begin{aligned} L(\theta)&=\frac{1}{n}\sum_{i=1}^n \log p_\theta(x_i)\\\ &=\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big].\end{aligned}
 $$
 
 Our objective is to maximize the log-likelihood function, that $\theta$ to assign maximum probabilistic density to all the examples:
@@ -120,7 +120,11 @@ $$\hat{\theta}\_{MLE}=\arg\max\limits\_{\theta} L(\theta).$$
 Kullback-Leibler Divergence (KL-Divergence) measures the difference between two distributions $p$ and $q$, is formulated as:
 $$D_{KL}(p | q)=\mathbb{E}\_p\Bigg[\log\frac{p(x)}{q(x)}\Bigg].$$
 A KL-Divergence's view of MLE is treating the two distributions as the groundtruth distribution of the data and the distribution estimated the model, respectively. Hence, we have:
-$$\begin{aligned}D\_{KL}(p\_{data}\| p\_\theta)&=\mathbb{E}\_{p\_{data}}\big\[\log p\_{data}(x)\big\]-\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]\\ \newline &=-\text{Entropy}(p_{data})-L(\theta).\end{aligned}$$ 
+
+$$
+\begin{aligned}D_{KL}(p_{data} |  p_\theta)&=\mathbb{E}\_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big]\\\ &=-\text{Entropy}(p_{data})-L(\theta).\end{aligned}
+$$ 
+
 Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Divergence between $p_{data}$ and $p\_{\theta}$. This KL-Divergence view does provide us with some insights about density estimation---the model varying $\theta$ is lying on a manifold (so-called information geometry picture) and the data density is a point that may not belong to the manifold. But we are projecting the data density point to the model manifold and MLE provides the best approximation to the data density.
 
 <!-- <p align="center">
