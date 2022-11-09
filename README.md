@@ -127,12 +127,6 @@ $$
 
 Trivially, if we are trying to maximize $L(\theta)$, we are minimizing the KL-Divergence between $p_{data}$ and $p\_{\theta}$. This KL-Divergence view does provide us with some insights about density estimation---the model varying $\theta$ is lying on a manifold (so-called information geometry picture) and the data density is a point that may not belong to the manifold. But we are projecting the data density point to the model manifold and MLE provides the best approximation to the data density.
 
-<!-- <p align="center">
-<img src="figures/kldiv.jpg" alt="kldiv" width=200>
-  <br>
-  <b>Projecting data to the model manifold</b>
-</p> -->
-
 Since we are calculating the expectation over $p\_{data}$, we cannot miss any mode of the data, otherwise we get a rather big KL-Divergence. This is the *mode covering* behavior of generative models. This raises a core problem of generative modeling---if your model is not expressive enough, you end up with either diffused or dispersed densities. In the remainder of this tutorial, we are going over different models trying to resolve the problem.
 
 <p align="center">
@@ -158,7 +152,11 @@ where $f\_\theta(x)$ is the negative energy and $Z(\theta)=\int\exp\big(f\_\thet
 ### Learning EBM
 
 We can calculate the derivative over $\theta$ using the chain rule, obtaining:
-$$\begin{aligned}\frac{\partial}{\partial\theta}\log Z(\theta)&=\frac{1}{Z(\theta)}\int\exp\big(f\_\theta(x)\big)\frac{\partial}{\partial\theta}f\_\theta(x)dx\\ \newline &=\mathbb{E}\_{P\_\theta}\Bigg[\frac{\partial}{\partial\theta} f\_\theta(x)\Bigg],\end{aligned}$$
+
+$$
+\begin{aligned}\frac{\partial}{\partial\theta}\log Z(\theta)&=\frac{1}{Z(\theta)}\int\exp\big(f_\theta(x)\big)\frac{\partial}{\partial\theta}f_\theta(x)dx\\\ &=\mathbb{E}\_{P_\theta}\Bigg[\frac{\partial}{\partial\theta} f_\theta(x)\Bigg],\end{aligned}
+$$
+
 where we get an important property that $\frac{\partial}{\partial\theta}\log Z(\theta)=\mathbb{E}\_{P\_\theta}\big\[\nabla\_\theta f\_\theta(x)\big\]$. 
 
 Bringing the EBM formulation into the MLE formulation, we have:
