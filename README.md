@@ -191,7 +191,7 @@ and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\
 
 ### Another Interpretation: Self-Adversarial Training
 
-If we treat the current model $p\_{\theta\_t}$ as an actor generating synthesized examples, and the learned model $p\_{\theta}$ as a critic---the current model is criticized to get closer to the real data density and away from current model density---we are obtaining an adversarial interpretation of CD. This reflects the idea of W-GAN. 
+If we treat the current model $p_{\theta\_t}$ as an actor generating synthesized examples, and the learned model $p_{\theta}$ as a critic---the current model is criticized to get closer to the real data density and away from current model density---we are obtaining an adversarial interpretation of CD. This reflects the idea of W-GAN. 
 
 <p align="center">
 <img src="figures/mode_chasing.gif" alt="modechasing" width="67%">
@@ -201,15 +201,15 @@ If we treat the current model $p\_{\theta\_t}$ as an actor generating synthesize
 
 ### Another Interpretation: Noise Contrastive Estimation
 
-Noise Contrastive Estimation (NCE) introduces a reference distribution $q(x)$ into the formulation of $p\_\theta(x)$:
-$$p\_\theta(x)=\frac{1}{Z(\theta)}\exp\big(f\_\theta(x)\big)q(x),$$
+Noise Contrastive Estimation (NCE) introduces a reference distribution $q(x)$ into the formulation of $p_\theta(x)$:
+$$p_\theta(x)=\frac{1}{Z(\theta)}\exp\big(f_\theta(x)\big)q(x),$$
 where $q(x)$ serves as a more informative density (*e.g.*, white noise $\mathcal{N}(\mathcal{0},\mathcal{I})$) than the uniform density in the original formulation of EBM.
 
-To learn the model, a more practical way is to view the problem from an adversarial perspective. If we draw $n$ true examples from the model $x\_1,\dots,x\_i,\dots,x\_n\sim p\_\theta$ that are labelled with $y\_i=1$, and draw $n$ faked examples from the noise $\tilde{x}\_1,\dots,\tilde{x}\_i,\dots,\tilde{x}\_n\sim q$ that are labelled with $y\_i=0$, then we can calculate the posterior distribution of the real examples given random $x$:
-$$p(y=1|x)=\frac{\frac{1}{2}p\_\theta(x)}{\frac{1}{2}p\_\theta(x)+\frac{1}{2}q(x)},$$
+To learn the model, a more practical way is to view the problem from an adversarial perspective. If we draw $n$ true examples from the model $x_1,\dots,x_i,\dots,x_n\sim p_\theta$ that are labelled with $y_i=1$, and draw $n$ faked examples from the noise $\tilde{x}\_1,\dots,\tilde{x}\_i,\dots,\tilde{x}\_n\sim q$ that are labelled with $y_i=0$, then we can calculate the posterior distribution of the real examples given random $x$:
+$$p(y=1|x)=\frac{\frac{1}{2}p_\theta(x)}{\frac{1}{2}p_\theta(x)+\frac{1}{2}q(x)},$$
 applying the Bayes rule, we obtain:
-$$\log\frac{p(y=1|x)}{p(y=0|x)}=f\_\theta(x)+\text{const},$$
-where the left-hand-side defines a discriminator, and $f\_\theta(x)$ here is a logit score. Hence, we are essentially learning a binary classifier, which is much more easier than MLE because we do not need to deal with the model density.
+$$\log\frac{p(y=1|x)}{p(y=0|x)}=f_\theta(x)+\text{const},$$
+where the left-hand-side defines a discriminator, and $f_\theta(x)$ here is a logit score. Hence, we are essentially learning a binary classifier, which is much more easier than MLE because we do not need to deal with the model density.
 
 ## Sampling Process for Learning EBM
 
