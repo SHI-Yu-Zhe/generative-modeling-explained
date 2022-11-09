@@ -175,8 +175,12 @@ However, computing the expectation is extremely hard. We have to use Monte-Carlo
 
 ### Contrastive Divergence
 
-Following the KL-Divergence perspective, we can also interpret the Monte-Carlo Sampling process for EBM in a similar way: consider the model in $t$ step $\theta\_t$, we have the Contrastive Divergence (CD):
-$$\begin{aligned}C(\theta)&=D\_{KL}(p\_{data}(x)\parallel p\_\theta(x)) - D\_{KL}(p\_{\theta\_t}(x)\parallel p\_\theta(x))\\ \newline &=\mathbb{E}\_{p\_{data}}\big\[\log p\_{data}(x)\big\]-\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]-\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_{\theta\_t}(x)\big\]+\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_\theta(x)\big\],\end{aligned}$$
+Following the KL-Divergence perspective, we can also interpret the Monte-Carlo Sampling process for EBM in a similar way: consider the model in $t$ step $\theta_t$, we have the Contrastive Divergence (CD):
+
+$$
+\begin{aligned}C(\theta)&=D_{KL}(p_{data}(x)\parallel p_\theta(x)) - D_{KL}(p_{\theta_t}(x)\parallel p_\theta(x))\\\ &=\mathbb{E}\_{p_{data}}\big[\log p_{data}(x)\big]-\mathbb{E}\_{p_{data}}\big[\log p_\theta(x)\big]-\mathbb{E}\_{p_{\theta_t}}\big[\log p_{\theta_t}(x)\big]+\mathbb{E}\_{p_{\theta_t}}\big[\log p_\theta(x)\big],\end{aligned}
+$$
+
 and the $-\log Z(\theta)$ term in $\mathbb{E}\_{p\_{data}}\big\[\log p\_\theta(x)\big\]$ and $\mathbb{E}\_{p\_{\theta\_t}}\big\[\log p\_\theta(x)\big\]$ is cancelled by each other. This provides an important merit that $L'(\theta\_t)=C'(\theta\_t)$, making the computation much more tractable.
 
 <p align="center">
