@@ -430,9 +430,9 @@ The following animations show the two pairs of counterparts that needs distincti
 
 ## Author and Citation Info
 
-[Dr. Ying Nian Wu](http://www.stat.ucla.edu/~ywu/) is currently a professor in Department of Statistics, UCLA. He received his A.M. degree and Ph.D. degree in statistics from Harvard University in 1994 and 1996 respectively. He was an assistant professor in the Department of Statistics, University of Michigan from 1997 to 1999. He joined UCLA in 1999. He has been a full professor since 2006. Wu’s research areas include generative modeling, representation learning, computer vision, computational neuroscience, and bioinformatics. 
-
 This tutorial entry is composed by Yu-Zhe Shi under the supervision of Dr. Ying Nian Wu.
+
+[Dr. Ying Nian Wu](http://www.stat.ucla.edu/~ywu/) is currently a professor in Department of Statistics, UCLA. He received his A.M. degree and Ph.D. degree in statistics from Harvard University in 1994 and 1996 respectively. He was an assistant professor in the Department of Statistics, University of Michigan from 1997 to 1999. He joined UCLA in 1999. He has been a full professor since 2006. Wu’s research areas include generative modeling, representation learning, computer vision, computational neuroscience, and bioinformatics. 
 
 ### Cite the Entry
 
