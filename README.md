@@ -441,7 +441,7 @@ This tutorial entry is composed by Yu-Zhe Shi under the supervision of Dr. Ying 
 	author       =	{Shi, Yu-Zhe and Wu, Ying Nian},
 	title        =	{{Generative Modeling Explained}},
 	booktitle    =	{Statistical Machine Learning Tutorials},
-	howpublished =	{\url{https://plato.stanford.edu/archives/fall2022/entries/concepts/}},
+	howpublished =	{\url{https://github.com/YuzheSHI/generative-modeling-explained}},
 	year         =	{2022},
 	edition      =	{{S}ummer 2022},
 	publisher    =	{Department of Statistics, UCLA}
