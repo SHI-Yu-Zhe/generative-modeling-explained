@@ -448,6 +448,10 @@ This tutorial entry is composed by Yu-Zhe Shi under the supervision of Dr. Ying 
 }
 ```
 
+### Acknowledgement
+
+The authors thank Dr. Yixin Zhu for helpful suggestions, Zhangqian Bi for debugging the markdown maths renderer, and Ms. Zhen Chen for helping design the animations.
+
 *[Back to Top](#generative-modeling-explained)
 
 
