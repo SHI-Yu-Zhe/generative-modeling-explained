@@ -1,6 +1,6 @@
 # Generative Modeling Explained
 
-This is Ying Nian Wu's official tutorial on generative modeling. The tutorial goes over the key equations and algorithms for learning recent generative models, including energy-based models, diffusion/score-based models, autoregressive/flow-based models, VAEs, and GANs, and explains the connections between these models. **In contrast to most current tutorials on generative modeling from the perspective of machine learning, this tutorial is unique for providing a more basic and natural perspective form statistics.** Starting with the very basic probability background, the tutorial is extremely learner-friendly.
+This tutorial on generative modeling is in part of *Statistical Machine Learning Tutorial* by Ying Nian Wu at UCLA Statistics. The tutorial goes over the key equations and algorithms for learning recent generative models, including energy-based models, diffusion/score-based models, autoregressive/flow-based models, VAEs, and GANs, and explains the connections between these models. **In contrast to most current tutorials on generative modeling from the perspective of machine learning, this tutorial is unique for providing a more basic and natural perspective form statistics.** Starting with the very basic probability background, the tutorial is extremely learner-friendly.
 
 ## Table of Contents
 
