@@ -250,7 +250,7 @@ $$
 &=\mathbb{E}\Bigg[h(x_t)+h'(x_t)\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Bigg]+o(\Delta t)\\
 &=\mathbb{E}\big[h(x_t)\big]+\int h'(x_t)\Big(\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Big)\pi(x_t)d x_t\\
 &=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\int h'(x_t)\pi'(x_t)d x_t\\
-&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\Bigg[h'(x_t)\pi(x_t)\Big|^\infty_{-\infty}-\int h''(x_t)\pi(x_t) dt\Bigg]\\
+&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\Bigg[h'(x_t)\pi(x_t)\bigg|^\infty_{-\infty}-\int h''(x_t)\pi(x_t) dt\Bigg]\\
 &=\mathbb{E}\big[h(x_t)\big]-\frac{\Delta t}{2}\mathbb{E}\big[h''(x_t)\big].
 \end{aligned}
 $$
