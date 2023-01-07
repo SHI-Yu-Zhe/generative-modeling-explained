@@ -248,7 +248,36 @@ How does this come? Let us look back into the updating equation of Langevin Dyna
   <b>Explaining Langevin Dynamics with equilibrium sampling: (1) gradient ascent as squeezing; (2) random pertubation as diffusion</b>
 </p>
 
-To analyze the phenomenon mathematically, we may look into the Taylor expansion of the testing function $\mathbb{E}\big[h(x_{t+\Delta t})\big]$. Expanding $\frac{\Delta t}{2}\nabla_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $e_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have opposite signs, they cancelled the effect of each other. This is identified as the Fokker-Planck effect.
+To analyze the phenomenon mathematically, we may look into the Taylor expansion of the testing function $\mathbb{E}\big[h(x_{t+\Delta t})\big]$. Expanding $\frac{\Delta t}{2}\nabla_x\log\pi(x)$ leads to a first-order Taylor remainder and expanding $e_t\sqrt{\Delta t}$ leads to a second-order Taylor remainder. Since the two terms have opposite signs (see the detailed derivations below), they cancelled the effect of each other. This is identified as the Fokker-Planck effect.
+
+The derivation for the first-order Taylor expansion in gradient ascent is as following:
+
+$$
+\begin{aligned}
+\mathbb{E}\big[h(x_{t+\Delta t})\big]&=\mathbb{E}\Bigg[h\Big(x_t+\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Big)\Bigg]\\
+&=\mathbb{E}\Bigg[h(x_t)+h'(x_t)\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Bigg]+o(\Delta t)\\
+&=\mathbb{E}\big[h(x_t)\big]+\int h'(x_t)\Big(\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Big)\pi(x_t)d x_t\\
+&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\int h'(x_t)\pi'(x_t)d x_t\\
+&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\Bigg[h'(x_t)\pi(x_t)\Big|^\infty_{-\infty}-\int h''(x_t)\pi(x_t) dt\Bigg]\\
+&=\mathbb{E}\big[h(x_t)\big]-\frac{\Delta t}{2}\mathbb{E}\big[h''(x_t)\big].
+\end{aligned}
+$$
+
+This derivation shows that the remainder of the Taylor expansion of gradient ascent is negative.
+
+The derivation for the second-order Taylor expansion in diffusion is as following:
+
+$$
+\begin{aligned}
+\mathbb{E}\big[h(x_{t+\Delta t})\big]&=\mathbb{E}\Big[h\big(x_t+\sqrt{\Delta t}e_t\big)\Big]\\
+&=\mathbb{E}\Bigg[h(x_t)+h'(x_t)\sqrt{\Delta t}e_t+\frac{1}{2}h''(x_t)\Big(\sqrt{\Delta t}e_t\Big)^2\Bigg]\\
+&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\mathbb{E}\Big[h''(x_t)e_t^2\Big]\\
+&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\mathbb{E}\Bigg[\mathbb{E}\Big[h''(x_t)e_t^2\Big|x_t\Big]\Bigg]\\
+&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\mathbb{E}\big[h''(x_t)\big].
+\end{aligned}
+$$
+
+This derivation shows that the remainder of the Taylor expansion of diffusion is positive.
 
 On the basis of equilibrium sampling, we are introducing score-based/diffusion models.
 
