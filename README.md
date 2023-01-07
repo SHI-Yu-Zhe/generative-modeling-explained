@@ -246,11 +246,11 @@ The derivation for the first-order Taylor expansion in gradient ascent is as fol
 
 $$
 \begin{aligned}
-\mathbb{E}\big[h(x_{t+\Delta t})\big]&=\mathbb{E}\Bigg[h\Big(x_t+\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Big)\Bigg]\\
-&=\mathbb{E}\Bigg[h(x_t)+h'(x_t)\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Bigg]+o(\Delta t)\\
-&=\mathbb{E}\big[h(x_t)\big]+\int h'(x_t)\Big(\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Big)\pi(x_t)d x_t\\
-&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\int h'(x_t)\pi'(x_t)d x_t\\
-&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\Bigg[h'(x_t)\pi(x_t)\bigg|^\infty_{-\infty}-\int h''(x_t)\pi(x_t) dt\Bigg]\\
+\mathbb{E}\big[h(x_{t+\Delta t})\big]&=\mathbb{E}\Bigg[h\Big(x_t+\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Big)\Bigg]\\\
+&=\mathbb{E}\Bigg[h(x_t)+h'(x_t)\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Bigg]+o(\Delta t)\\\
+&=\mathbb{E}\big[h(x_t)\big]+\int h'(x_t)\Big(\frac{\Delta t}{2}\nabla_x\log\pi(x_t)\Big)\pi(x_t)d x_t\\\
+&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\int h'(x_t)\pi'(x_t)d x_t\\\
+&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\Bigg[h'(x_t)\pi(x_t)\bigg|^\infty_{-\infty}-\int h''(x_t)\pi(x_t) dt\Bigg]\\\
 &=\mathbb{E}\big[h(x_t)\big]-\frac{\Delta t}{2}\mathbb{E}\big[h''(x_t)\big].
 \end{aligned}
 $$
@@ -261,10 +261,10 @@ The derivation for the second-order Taylor expansion in diffusion is as followin
 
 $$
 \begin{aligned}
-\mathbb{E}\big[h(x_{t+\Delta t})\big]&=\mathbb{E}\Big[h\big(x_t+\sqrt{\Delta t}e_t\big)\Big]\\
-&=\mathbb{E}\Bigg[h(x_t)+h'(x_t)\sqrt{\Delta t}e_t+\frac{1}{2}h''(x_t)\Big(\sqrt{\Delta t}e_t\Big)^2\Bigg]\\
-&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\mathbb{E}\Big[h''(x_t)e_t^2\Big]\\
-&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\mathbb{E}\Bigg[\mathbb{E}\Big[h''(x_t)e_t^2\Big|x_t\Big]\Bigg]\\
+\mathbb{E}\big[h(x_{t+\Delta t})\big]&=\mathbb{E}\Big[h\big(x_t+\sqrt{\Delta t}e_t\big)\Big]\\\
+&=\mathbb{E}\Bigg[h(x_t)+h'(x_t)\sqrt{\Delta t}e_t+\frac{1}{2}h''(x_t)\Big(\sqrt{\Delta t}e_t\Big)^2\Bigg]\\\
+&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\mathbb{E}\Big[h''(x_t)e_t^2\Big]\\\
+&=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\mathbb{E}\Bigg[\mathbb{E}\Big[h''(x_t)e_t^2\Big|x_t\Big]\Bigg]\\\
 &=\mathbb{E}\big[h(x_t)\big]+\frac{\Delta t}{2}\mathbb{E}\big[h''(x_t)\big].
 \end{aligned}
 $$
