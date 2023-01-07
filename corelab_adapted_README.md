@@ -25,7 +25,7 @@ Dr. Wu introduces a smooth analogy to the golf for understanding the relations b
   <b>A visulization of the golf analogy</b>
 </p>
 
-*[Back to Top](#generative-modeling-explained)
+<!-- *[Back to Top](#generative-modeling-explained) -->
 
 ## Prerequisite: Probability Density <span id = "probability-density"></span>
 
@@ -78,7 +78,7 @@ This equation shows that the joint distribution lies in the center of probabilit
 
 The expectation $\mathbb{E}$ measures the average of the corresponding distribution in the long run. Visually, $\mathbb{E}\_{p(x,y)}$ is the average over all the $n$ points, $\mathbb{E}\_{p(x)}$ is the average over all points projected to the x-axis, and $\mathbb{E}\_{p(y|x)}$ is the average with the points in the vertical bin $(x,x+\Delta x)$.
 
-*[Back to Top](#generative-modeling-explained)
+<!-- *[Back to Top](#generative-modeling-explained) -->
 
 ## The Core Problem: Density Estimation <span id = "density-estimation"></span>
 
@@ -125,7 +125,7 @@ Since we are calculating the expectation over $p_{data}$, we cannot miss any mod
   <b>The mode covering behavior</b>
 </p>
 
-*[Back to Top](#generative-modeling-explained)
+<!-- *[Back to Top](#generative-modeling-explained) -->
 
 ## Energy-based Model
 
@@ -201,7 +201,7 @@ applying the Bayes rule, we obtain:
 $$\log\frac{p(y=1|x)}{p(y=0|x)}=f_\theta(x)+\text{const},$$
 where the left-hand-side defines a discriminator, and $f_\theta(x)$ here is a logit score. Hence, we are essentially learning a binary classifier, which is much more easier than MLE because we do not need to deal with the model density.
 
-*[Back to Top](#generative-modeling-explained)
+<!-- *[Back to Top](#generative-modeling-explained) -->
 
 ## Sampling Process for Learning EBM
 
@@ -277,7 +277,7 @@ Though coming with the merit of equilibrium sampling, Langevin Dynamics suffers 
 $$\pi_\beta(x)=\frac{1}{Z_\beta(x)}\exp\big(\beta f(x)\big)q(x),$$
 where $q(x)\sim\mathcal{N}(0,\mathcal{I})$. As $\beta$ increasing from 0 to 1, we are sampling from a simple Gaussian to a highly multi-modal density. This process is called Simulated Annealing. A principled implementation of Simulated Annealing is running parallel chains to draw samples from $\beta=0$ to $\beta=1$ simultaneously, with the exchange of samples among models.
 
-*[Back to Top](#generative-modeling-explained)
+<!-- *[Back to Top](#generative-modeling-explained) -->
 
 ## Diffusion/Score-based Models <span id = "diffusion-score-based-models"></span>
 
@@ -440,7 +440,7 @@ The following animations show the two pairs of counterparts that needs distincti
   <b>Equilibrium sampling vs. non-equilibrium sampling</b>
 </p>
 
-*[Back to Top](#generative-modeling-explained)
+<!-- *[Back to Top](#generative-modeling-explained) -->
 
 
 ## Bibliography
@@ -453,7 +453,7 @@ The following animations show the two pairs of counterparts that needs distincti
 
 * [Score-Based Generative Modeling through Stochastic Differential Equations](https://openreview.net/forum?id=PxTIG12RRHS&utm_campaign=NLP%20News&utm_medium=email&utm_source=Revue%20newsletter) - ***ICLR'20***, 2020. [[All Versions](https://scholar.google.com/scholar?cluster=14592788616550656262&hl=en&as_sdt=0,5)].
 
-*[Back to Top](#generative-modeling-explained)
+<!-- *[Back to Top](#generative-modeling-explained) -->
 
 ## Author and Citation Info
 
@@ -479,5 +479,5 @@ This tutorial entry is composed by Yu-Zhe Shi under the supervision of Dr. Ying 
 
 The authors thank Dr. Yixin Zhu for helpful suggestions, Zhangqian Bi for debugging the markdown maths renderer, and Ms. Zhen Chen for helping design the animations.
 
-*[Back to Top](#generative-modeling-explained)
+<!-- *[Back to Top](#generative-modeling-explained) -->
 
